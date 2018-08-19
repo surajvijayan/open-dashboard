@@ -29,7 +29,7 @@ $widgets_array = array(
                              "HEADING" => "GDP of Countries",
                              "REFRESH_SECS" => "0",
                              "INPUT_FORM" => "GDP_REGIONS",
-                             "INPUT_FORM_ARGS" => array("USA")
+                             "INPUT_FORM_ARGS" => array("0","USA","CAN","CHN","JPN","IND","GBR","DEU")
                          ),
 					),
 					 array(
