@@ -70,7 +70,7 @@ function country_gdp_submit(ROOT,div,form_id,click_id)
 			countries = $(form_id+' select[name=country] option:selected').map(function(){ return this.value }).get().join(';');		      
 			c_codes = $(form_id+' select[name=country] option:selected').map(function(){ return this.value }).get().join(';');		      
 			fyear = $(form_id+' select[name=fyear] option:selected').val();		      
-            header = 'GDP for Countries:'+countries+'\n';
+            header = 'GDP for Countries:'+countries+' in year:'+fyear;
 		    $('#'+div).empty();
 		    webservice = countries+'/indicators/NY.GDP.MKTP.CD?date='+fyear+'&format=json';
 		    country_gdp_process('https://api.worldbank.org/v2/countries/'+webservice,'',header,div);
