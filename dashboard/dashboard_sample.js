@@ -94,7 +94,7 @@ AmCharts.ready(function(){
         $("h2#heading").text(option);
     });
     $(".date_input").datepicker({dateFormat: "yy-mm-dd"}).attr('readonly', 'true');
-	$('.chosen-select').chosen({max_selected_options:4}).change();	$("h4#date").text("Last Updated: "+Date());
+	$('.chosen-select').chosen({max_selected_options:7}).change();	$("h4#date").text("Last Updated: "+Date());
 	$('#DIV_1').addClass('big_div_class');
 	$('#DIV_1').show();
 	get_country_fact_sheets_submit(ROOT,'DIV_1','#form_get_country_fact_sheets','#click_get_country_fact_sheets');
