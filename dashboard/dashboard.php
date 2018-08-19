@@ -377,14 +377,14 @@ echo <<<EOF
 EOF;
       foreach($countries as $key => $mcountry)
       {
-          if($country == $key)
+          if(array_search($key,$args) != FALSE)
               print "<option value=\"$key\" SELECTED>$mcountry</option>\n";
             else
               print "<option value=\"$key\">$mcountry</option>\n";
       }
 echo <<<EOF
       </select>
-	  From <select name="fyear">
+	  Year <select name="fyear">
      		<option value="2001">2001</option>
      		<option value="2002">2002</option>
      		<option value="2003">2003</option>

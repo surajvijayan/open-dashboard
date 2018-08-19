@@ -171,7 +171,7 @@ AmCharts.ready(function(){
         $("h2#heading").text(option);
     });
     $(".date_input").datepicker({dateFormat: "yy-mm-dd"}).attr('readonly', 'true');
-	$('.chosen-select').chosen({max_selected_options:4}).change();
+	$('.chosen-select').chosen({max_selected_options:7}).change();
 EOF;
 }
 /*****************************************************************************************/
