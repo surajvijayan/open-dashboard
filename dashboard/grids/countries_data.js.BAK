@@ -1,0 +1,135 @@
+
+/*****************************************************************************************/
+
+function countries_data_process(ROOT,service,flag,table_id)
+{
+    var url;
+	var region = $("#form_countries_data input[name=region]").val();
+    var widget_type = "grid";
+    var title = 'Countries in region:'+region;
+
+alert('FORM2: #'+table_id);
+	var url = ROOT;
+    jQuery('#'+table_id).jqGrid({
+    url:url,
+    loadonce: true,
+    mtype: 'GET',
+    datatype: 'json',
+    colNames:[
+				'name',
+				'capital',
+				'population',
+				'area'
+				//'borders'
+			],
+    colModel:[
+        {name:'name',width:200},
+        {name:'capital',width:200},
+		{name:'population',width:130,template: "integer"},
+		{name:'area',width:130,template: "integer"}
+    ],
+	iconSet: "fontAwesome",
+    rowNum:20,
+    rowList:[10,20,30],
+    pager: true,
+    viewrecords: true,
+    sortorder: "desc",
+    caption: title,
+    hiddengrid: flag,
+    shrinkToFit: false,
+	subGrid: false,
+	subGridOptions: 
+	{
+		hasSubgrid: function (options) 
+		{
+			if(options.data.SUB_LOT_CNT > 0)
+				return(1);
+			return(0);
+		}
+	},
+	subGridRowExpanded: countries_data_subgrid
+    //cmTemplate: { autoResizable: true },
+    //autoResizing: { compact: true },
+    //autoresizeOnLoad: true
+	}).jqGrid("navGrid", {refresh:false,edit: false,add: false,del: false,search: false,view: false})
+	.jqGrid('navButtonAdd', {
+        caption: "Export to Excel",
+        buttonicon: "ui-icon-disk",
+        //buttonicon: "ui-icon-folder-open",
+        buttonicon: "fas fa-file-excel",
+        onClickButton: function () 
+		{
+			var downloadPost = $.extend( true, {}, postData );  // Deep copy variable
+            downloadPost["csv"]=1;
+            $.redirect(url, downloadPost);
+		},
+     });
+}
+/*****************************************************************************************/
+
+function countries_data_submit(ROOT,div,form_id)
+{
+	var region,webservice;
+    	$(form_id).submit(
+        function(e)
+        {
+            e.preventDefault();
+alert('FORM:'+form_id);
+alert('DIV:'+div);
+            region = $(form_id+' select[name=region] option:selected').val();
+            name = $(form_id+' select[name=region] option:selected').text();
+            $('#'+div).empty();
+            webservice = '?fields=name;capital;population;area;borders';
+			$('#'+div).GridUnload();
+            countries_data_process('https://restcountries.eu/rest/v2/regionalbloc/'+region+webservice,'',false,div);
+            $('#'+div).show();
+        });
+}
+/*****************************************************************************************/
+
+function countries_data_subgrid(subgrid_id, row_id)
+{
+	var selectedrow = $(this).jqGrid('getRowData', row_id);
+    var url = gROOT;
+	var service = 'get_lot_info';
+
+    var title = 'Retest / Child lots for:'+selectedrow.PARENT_LOT_ID;
+    var subgrid_table = subgrid_id+'_t';
+
+	$("#"+subgrid_id).html("<table id='"+subgrid_table+"'></table>");
+    jQuery('#'+subgrid_table).jqGrid({
+    url:url,
+    loadonce: true,
+    mtype: 'POST',
+    datatype: 'json',
+    postData: {service:service,site: selectedrow.SITE,lot_id: selectedrow.PARENT_LOT_ID},
+	colNames:['LOT_ID','TESTED_DATE','TESTER','VERSION','BIN1_CNT','TOT_UNITS','YIELD','TEST_CODE'],
+    colModel:[
+        {name:'LOT_ID',width:200},
+        {name:'TESTED_DATE',width:100},
+        {name:'TESTER',width:100},
+        {name:'VERSION',width:100},
+        {name:'BIN1_CNT',width:120,template: "number", formatoptions: { decimalPlaces:0}},
+        {name:'TOT_UNITS',width:120,template: "number", formatoptions: { decimalPlaces:0}},
+        {name:'YIELD',width:80,template:"number",formatoptions: { suffix: "%"}},
+        {name:'TEST_CODE',width:100}
+    ],
+    iconSet: "fontAwesome",
+    pager: false,
+    viewrecords: true,
+    sortorder: "desc",
+    caption: title,
+    hiddengrid: false,
+    shrinkToFit: false,
+	subGrid: false
+	//rowattr: function (rd) 
+	//{
+	//	return {"class": "myAltRowClass"};
+	//}
+    //cmTemplate: { autoResizable: true },
+    //autoResizing: { compact: true },
+    //autoresizeOnLoad: true
+    }).jqGrid("navGrid", {refresh:false,edit: false,add: false,del: false,search: false,view: false});
+}
+/*****************************************************************************************/
+
