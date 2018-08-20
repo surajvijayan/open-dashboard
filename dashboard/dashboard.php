@@ -24,8 +24,10 @@ echo <<<EOF
   <script type="text/javascript" src="$ROOT/jquery-3.3.1.min.js"></script>
   <script type="text/javascript" src="$ROOT/jquery-ui-1.12.1/jquery-ui.min.js"></script> 
   <script type="text/javascript" src="$ROOT/js/jquery.redirect.js"></script>
-  <script type="text/javascript" src="$ROOT/js/jquery.themes.min.js"></script>
+  <script type="text/javascript" src="$ROOT/js/jquery.themes.js"></script>
   <script type="text/javascript" src="$ROOT/js/chosen.jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="$ROOT/jquery-ui-themes-1.12.1/jquery-ui.theme.css" />
+  <link rel="stylesheet" type="text/css" href="$ROOT/jquery-ui-themes-1.12.1/jquery-ui.structure.min.css" />
   <link rel="stylesheet" type="text/css" href="$ROOT/css/chosen.min.css" />
 
   <script type="text/javascript" src="$ROOT/amcharts/amcharts.js"></script>
@@ -492,7 +494,7 @@ EOF;
 }
 /**********************************************************************************************/
 
-function show_widgets($widgets_array,$sites,$ca_names,$keypools)
+function show_widgets($widgets_array)
 {
 	$widget_defs = array();
 

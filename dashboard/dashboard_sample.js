@@ -68,7 +68,7 @@ $.themes.setDefaults({themeBase: '../jquery-ui-themes-1.12.1/themes/',
                       previews: '../js/themes-preview.gif',
                       icons: '../js/themes.gif',
                       cookieExpiry: 7,
-                      themeFile: 'jquery-ui.css',
+                      themeFile: 'jquery-ui.min.css',
                       showPreview: false,
 					  defaultTheme:'smoothness',
                       onSelect:fn});

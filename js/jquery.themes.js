@@ -17,7 +17,7 @@ function Themes() {
 	this._linkID = 'th' + new Date().getTime();
 	this._defaults = {
 		themes: [],  // List of theme IDs to use, empty for all
-		themeBase: '',  // The base URL for all the theme files
+		themeBase: '../jquery-ui-themes-1.12.1/themes/',  // The base URL for all the theme files
 		themeFile: 'jquery-ui.css', // Name of the theme file
 		defaultTheme: '', // The ID of the default theme, first one if blank
 		icons: 'img/themes.gif', // Horizontal amalgamation of all theme icons

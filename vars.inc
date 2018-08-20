@@ -1,4 +1,4 @@
 <?php
 global $ROOT;
-$ROOT = "https://bbportal-dev.broadcom.com/dashboard";
+$ROOT = "http://192.168.1.74/dashboard";
 ?>
