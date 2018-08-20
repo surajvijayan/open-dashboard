@@ -74,20 +74,20 @@ Open-Dashboard supports plug-and-play type forms that could be attached to any w
 An array of parameters passed to form defined in widget configuration. These values are used when Open-Dashboard initially loads widgets.
 
 # Widget Javascript file
-Every widget should have a Javascript file named: <widget_name>.js in chart or grid directory under ROOT/dashboard. This file should have two functions named:
-1. <widget_name>__process(ROOT,params,header,div)
-2. <widget_name>__submit(ROOT,div,form_id,click_id)
+Every widget should have a Javascript file named: '<widget_name>'.js in chart or grid directory under ROOT/dashboard. This file should have two functions named:
+1. '<widget_name>'_process(ROOT,params,header,div)
+2. '<widget_name>'_submit(ROOT,div,form_id,click_id)
 
 Please refer to sample wiget Javascript files under dashboard/charts and dashboards/grids directories. Please note, widget name in <widget_name>.js file name should exactly match the name configured in <pane_name>.inc file.
 
 # Runtime Javascript files
 
 Open-Dashboard needs some runtime Javascript and startup PHP files to be generated once Widget Javascript files and <pane_name>.inc files are generated.
-1. <pane_name>_widgets.js
-2. dashboard_<pane_name>.js
-3. dashboard_<pane_name>.php
+1. '<pane_name>'_widgets.js
+2. dashboard_'<pane_name>'.js
+3. dashboard_'<pane_name>'.php
 
-<pane_name>_widgets.js should have the list of all Javascript widgets configured within a <pane_name>.inc. sample_wigets.js is shown below:
+'<pane_name>'_widgets.js should have the list of all Javascript widgets configured within a <pane_name>.inc. sample_wigets.js is shown below:
 ```js
 /* Suraj Vijayan 
  *
@@ -109,4 +109,4 @@ include('charts/country_gdp.js');
 include('grids/countries_data.js');
 ```
 <br>
-dashboard_<pane_name>.js and dashboard_<pane_name>.php are needed for each <pane> being supported by Open-Dashboard. 
+dashboard_'<pane_name>'.js and dashboard_'<pane_name>'.php are needed for each '<pane>' being supported by Open-Dashboard. 
