@@ -458,7 +458,7 @@ echo <<<EOF
             <ul class="nav" id="list2">
             <li id=t1 class="dropdown ui-widget-header"><a href="#"><i class="ui-widget-content fa fa-bars"></i></a>
             <ul id="list1">
-                <li><a href="./dashboard_sample.php">Sample</a></li>
+                <li><a href="./dashboard_sample.php">Sample Widgets</a></li>
             </ul>
             </li>
             </ul>
