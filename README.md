@@ -4,7 +4,7 @@ A dashboard framework to deploy chart and grid widgets. Light-weight and very fl
 ![Optional Text](../master/docs/image1.png)
 # Configuration
 Open-Dashboard is a collection of chart or grid type widgets organized under different panes. Each pane has its own configuration file named: <pane_name>.inc. Widget configuration file in <pane_name>.inc is a PHP two dimentional array of wiget structures. Each row maps to a row of widgets displayed by Open-Dashboard.
-# Sample pane inc file: dasnboard_sample.inc
+# Sample pane include file: dasnboard_sample.inc
 ```php
 <?php
 
@@ -66,6 +66,8 @@ Defines the size of widget window. It should be 'big','medium' or 'small'.
 The exact name of the wiget. Widget of type 'chart' should have a javascript file named: <widget_name>.js under dashboard/charts directory. Widget of type 'grid' should have a javascript file named: <widget_name>.js under dashboard/grids directory.
 ## HEADING
 This should be set only for  widgets of type 'chart'. This value will be displayed as heading of chart widget. HEADING should be set to null for widgets of type 'grid'.
+## REFRESH_SECS
+Seconds interval to refresh widget data. Open-Dashboard will invoke widget service after seconds configured here. A value of zero indicats data will never be auto-refreshed.
 ##INPUT_FORM
 Open-Dashboard supports plug-and-play type forms that could be attached to any widget. Form takes in input for widgets,calls webservice attached to that widget,extracts JSON data from webservice and then refreshes widget with updated JSON data. Refer sample forms: region_input_form,gdp_input_form,date_input_form and date_range_input_form in dashboard.php file.
 ## INPUT_FORM_ARGS
@@ -76,9 +78,35 @@ Every widget should have a Javascript file named: <widget_name>.js in chart or g
 1. <widget_name>__process(ROOT,params,header,div)
 2. <widget_name>__submit(ROOT,div,form_id,click_id)
 
-Please refer to sample wiget Javascript files under dashboard/charts and dashboards/grids directories. Please note, widget name is <widget_name>.js file name should exactly match the name configured in <pane_name>.inc file.
+Please refer to sample wiget Javascript files under dashboard/charts and dashboards/grids directories. Please note, widget name in <widget_name>.js file name should exactly match the name configured in <pane_name>.inc file.
 
 # Runtime Javascript files
 
-Open-Dashboard needs some runtime Javascript files to be generated once Widget Javascript files and <pane_name>.inc files are generated.
+Open-Dashboard needs some runtime Javascript and startup PHP files to be generated once Widget Javascript files and <pane_name>.inc files are generated.
+1. <pane_name>_widgets.js
+2. dashboard_<pane_name>.js
+3. dashboard_<pane_name>.php
 
+<pane_name>_widgets.js should have the list of all Javascript widgets configured within a <pane_name>.inc. sample_wigets.js is shown below:
+```js
+/* Suraj Vijayan 
+ *
+ * Got this from: http://chapter31.com/2006/12/07/including-js-files-from-within-js-files/
+ *
+ */
+//this function includes all necessary js files for the application
+function include(file)
+{
+	var script  = document.createElement('script');
+	script.src  = file;
+	script.type = 'text/javascript';
+	script.defer = true;
+	document.getElementsByTagName('head').item(0).appendChild(script);
+}
+include('charts/get_country_fact_sheets.js');
+include('charts/country_area.js');
+include('charts/country_gdp.js');
+include('grids/countries_data.js');
+```
+<br>
+dashboard_<pane_name>.js and dashboard_<pane_name>.php are needed for each <pane> being supported by Open-Dashboard. 
