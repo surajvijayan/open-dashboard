@@ -3,7 +3,7 @@ A PHP dashboard framework to deploy chart and grid widgets. Light-weight and ver
 # Screenshot
 ![Optional Text](../master/docs/image1.png)
 # Configuration
-Open-Dashboard is a PHP based collection of chart and grid type widgets framework organized under different panes. Each pane has its own configuration file named: <pane_name>.inc. Widget configuration file in <pane_name>.inc is a PHP two dimentional array of widget structures. Each row maps to a row of widgets displayed by Open-Dashboard.
+Open-Dashboard widgets are organized under different panes. Each pane has its own configuration file named: <pane_name>.inc. Widget configuration file in <pane_name>.inc is a PHP two dimentional array of widget structures. Each row maps to a row of widgets displayed by Open-Dashboard.
 # Sample pane include file: dasnboard_sample.inc
 ```php
 <?php
@@ -110,15 +110,15 @@ include('charts/country_gdp.js');
 include('grids/countries_data.js');
 ```
 <br>
-<pane_name>_widgets.js,dashboard_<pane_name>.js and dashboard_<pane_name>.php are needed for each &lt;pane&gt; supported by Open-Dashboard. All three files are generated via running PHP command-line utility: dashboard/dashboard_create_php_js.php. dashboard/dashboard_create_php_js.php takes the following arguments:
+&lt;pane_name&gt;_widgets.js,dashboard_&lt;pane_name&gt;.js and dashboard_<pane_name>.php are needed for each &lt;pane&gt; supported by Open-Dashboard. All three files are generated via running PHP command-line utility: dashboard/dashboard_create_php_js.php. dashboard/dashboard_create_php_js.php takes the following arguments:
 <li>$php dashboard_create_js.php 
-Usage: $0 <dashboard_xx.inc> [php|js] <header>
+Usage: $0 &lt;dashboard_xx.inc&gt; [php|js] &lt;header&gt;
 Please see below:
-1. Generating dashboard_<pane>.js
+1. Generating dashboard_&lt;pane&gt;.js
 	Run the command:
 <li>$php dashboard_create_js.php dashboard_sample.inc js "sample Widgets" > dashboard_sample.js
-2. Generating dashboard_<pane>.php
+2. Generating dashboard_&lt;pane&gt;.php
 <li>$php dashboard_create_js.php dashboard_sample.inc php "sample Widgets" > dashboard_sample.php
-3. Generating <pane_name>_widgets.js
+3. Generating &lt;pane_name&gt;_widgets.js
 <li>$php dashboard_create_js.php dashboard_sample.inc widgets "sample Widgets" > sample_widgets.js
 
