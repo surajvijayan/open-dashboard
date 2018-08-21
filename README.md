@@ -79,7 +79,7 @@ Every widget should have a Javascript file named: '&lt;widget_name&gt;'.js in ch
 1. '&lt;widget_name&gt;'_process(ROOT,params,header,div)
 2. '&lt;widget_name&gt;'_submit(ROOT,div,form_id,click_id)
 
-Please refer to sample widget Javascript files under dashboard/charts and dashboards/grids directories. Please note, widget name in &lt;widget_name&gt.js file name should exactly match the name configured in &lt;pane_name&gt;.inc file.
+Please refer to sample widget Javascript files under dashboard/charts and dashboards/grids directories. Please note, widget name in &lt;widget_name&gt;.js file name should exactly match the name configured in &lt;pane_name&gt;.inc file.
 
 # Runtime Javascript files
 
@@ -113,6 +113,7 @@ include('grids/countries_data.js');
 <br>
 &lt;pane_name&gt;_widgets.js,dashboard_&lt;pane_name&gt;.js and dashboard_&lt;pane_name&gt;.php are needed for each &lt;pane&gt; supported by Open-Dashboard. All three files are generated via running PHP command-line utility: dashboard/dashboard_create_php_js.php. dashboard/dashboard_create_php_js.php takes the following arguments:
 <li>$php dashboard_create_js.php 
+<br>
 Usage: $0 &lt;dashboard_xx.inc&gt; [php|js] &lt;header&gt;
 <br>
 <br>
