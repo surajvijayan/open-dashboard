@@ -3,7 +3,7 @@ A dashboard framework to deploy chart and grid widgets. Light-weight and very fl
 # Screenshot
 ![Optional Text](../master/docs/image1.png)
 # Configuration
-Open-Dashboard is a collection of chart or grid type widgets organized under different panes. Each pane has its own configuration file named: &ltpane_name&gt.inc. Widget configuration file in &ltpane_name&gt.inc is a PHP two dimentional array of wiget structures. Each row maps to a row of widgets displayed by Open-Dashboard.
+Open-Dashboard is a collection of chart or grid type widgets organized under different panes. Each pane has its own configuration file named: <pane_name>.inc. Widget configuration file in <pane_name>.inc is a PHP two dimentional array of wiget structures. Each row maps to a row of widgets displayed by Open-Dashboard.
 # Sample pane include file: dasnboard_sample.inc
 ```php
 <?php
@@ -78,16 +78,16 @@ Every widget should have a Javascript file named: '<widget_name>'.js in chart or
 1. '<widget_name>'_process(ROOT,params,header,div)
 2. '<widget_name>'_submit(ROOT,div,form_id,click_id)
 
-Please refer to sample wiget Javascript files under dashboard/charts and dashboards/grids directories. Please note, widget name in <widget_name>.js file name should exactly match the name configured in &ltpane_name&gt.inc file.
+Please refer to sample wiget Javascript files under dashboard/charts and dashboards/grids directories. Please note, widget name in <widget_name>.js file name should exactly match the name configured in <pane_name>.inc file.
 
 # Runtime Javascript files
 
-Open-Dashboard needs some runtime Javascript and startup PHP files to be generated once Widget Javascript files and &ltpane_name&gt.inc files are generated.
-1. &ltpane_name&gt_widgets.js
-2. dashboard_&ltpane_name&gt.js
-3. dashboard_&ltpane_name&gt.php
+Open-Dashboard needs some runtime Javascript and startup PHP files to be generated once Widget Javascript files and <pane_name>.inc files are generated.
+1. <pane_name>_widgets.js
+2. dashboard_<pane_name>.js
+3. dashboard_<pane_name>.php
 
-&ltpane_name&gt_widgets.js should have the list of all Javascript widgets configured within a &ltpane_name&gt.inc. sample_wigets.js is shown below:
+<pane_name>_widgets.js should have the list of all Javascript widgets configured within a <pane_name>.inc. sample_wigets.js is shown below:
 ```js
 /* Suraj Vijayan 
  *
@@ -109,4 +109,4 @@ include('charts/country_gdp.js');
 include('grids/countries_data.js');
 ```
 <br>
-dashboard_&ltpane_name&gt.js and dashboard_&ltpane_name&gt.php are needed for each &ltpane&gt being supported by Open-Dashboard. 
+dashboard_<pane_name>.js and dashboard_<pane_name>.php are needed for each <pane> being supported by Open-Dashboard. 
