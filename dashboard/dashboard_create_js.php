@@ -1,75 +1,29 @@
 <?php
 
-	if ($argc == 2) 
+if ($argc == 4) 
+{
+	if (php_sapi_name() == 'cli')
 	{
-  		if (php_sapi_name() == 'cli')
+		switch($argv[2])
 		{
-			include_once($argv[1]); 
-			print_top();
-			print "\t" . '$("h4#date").text("Last Updated: "+Date());' . "\n";
-			$no = 1;
-			foreach ($widgets_array as $row)
-			{
-				foreach ($row as $widget)
-				{
-					$div = 'DIV_' . $no;
-					if($widget["TYPE"] == "chart")
-					{
-						switch ($widget["SIZE"])
-						{
-							case 'small':
-								print "\t" . "$('#" . $div . "').addClass('small_div_class');" . "\n";
-								break;
-							case 'medium':
-								print "\t" . "$('#" . $div . "').addClass('med_div_class');" . "\n";
-								break;
-							case 'big':
-								print "\t" . "$('#" . $div . "').addClass('big_div_class');" . "\n";
-								break;
-						}
-						print "\t" . "$('#" . $div . "').show();" . "\n";
-						print "\t" . $widget['NAME'] . "_" . "submit(ROOT,'" . $div . "','#form_" . $widget['NAME'] . "','#click_" . $widget['NAME'] . "');" . "\n";
-						print "\t" . "$('#form_" . $widget['NAME'] . "').trigger('submit');" . "\n";
-						print "\t" . '$("h4#date").text("Last Updated: "+Date());' . "\n";
-						if(!empty($widget["REFRESH_SECS"]) && $widget["REFRESH_SECS"] > 0)
-						{
-							$secs = $widget["REFRESH_SECS"] * 1000;
-							print "\tsetInterval(" . "\n\t\tfunction()\n\t\t{\n\t\t\t" . "$('#form_" . $widget['NAME'] . "').trigger('submit');;\n\t\t},\n\t" . $secs . ");\n";
-						}
-					}
-					else
-					{
-						switch ($widget["SIZE"])
-                        {
-                            case 'small':
-                                print "\t" . "$('#" . $div . "').addClass('small_div_class');" . "\n";
-                                break;
-                            case 'medium':
-                                print "\t" . "$('#" . $div . "').addClass('med_div_class');" . "\n";
-                                break;
-                            case 'big':
-                                print "\t" . "$('#" . $div . "').addClass('big_div_class');" . "\n";
-                                break;
-                        }
-						print "\t" . $widget['NAME' ] . "_submit(ROOT,'" . $div . "','#form_" . $widget['NAME'] . "');\n";
-						print "\t" . "$('#form_" . $widget['NAME'] . "').trigger('submit');" . "\n";
-						print "\t" . '$("h4#date").text("Last Updated: "+Date());' . "\n";
-						if(!empty($widget["REFRESH_SECS"]) && $widget["REFRESH_SECS"] > 0)
-						{
-							$secs = $widget["REFRESH_SECS"] * 1000;
-							print "\tsetInterval(" . "\n\t\tfunction()\n\t\t{\n\t\t\t" . "$('#form_" . $widget['NAME'] . "').trigger('submit');;\n\t\t},\n\t" . $secs .");\n";
-						}
-					}
-					$no++;		
-				}
-			}
-			print "});\n}\n";
+			case "js":
+				create_js($argv[1]);
+				break;
+			case "php":
+				create_php($argv[1],$argv[3]);
+				break;
+			case "widgets":
+				create_widgets($argv[1],$argv[3]);
+				break;
+			default:
+				print "Usage: $0 <dashboard_xx.inc> [php|js] <header>" . "\n";
+				break;
 		}
 	}
-	else
-	{
-		print "Usage: $0 <dashboard_xx.inc>" . "\n";
-	}
+}
+else
+	print "Usage: $0 <dashboard_xx.inc> [php|js|widgets] <header>" . "\n";
+
 /*********************************************************************************************/
 
 function print_top()
@@ -173,6 +127,132 @@ AmCharts.ready(function(){
     $(".date_input").datepicker({dateFormat: "yy-mm-dd"}).attr('readonly', 'true');
 	$('.chosen-select').chosen({max_selected_options:7}).change();
 EOF;
+}
+/*****************************************************************************************/
+
+function create_js($inc_file)
+{
+	include_once($inc_file);
+	print_top();
+	print "\t" . '$("h4#date").text("Last Updated: "+Date());' . "\n";
+	$no = 1;
+	foreach ($widgets_array as $row)
+	{
+		foreach ($row as $widget)
+		{
+			$div = 'DIV_' . $no;
+			if($widget["TYPE"] == "chart")
+			{
+				switch ($widget["SIZE"])
+				{
+					case 'small':
+						print "\t" . "$('#" . $div . "').addClass('small_div_class');" . "\n";
+						break;
+					case 'medium':
+						print "\t" . "$('#" . $div . "').addClass('med_div_class');" . "\n";
+						break;
+					case 'big':
+						print "\t" . "$('#" . $div . "').addClass('big_div_class');" . "\n";
+						break;
+				}
+				print "\t" . "$('#" . $div . "').show();" . "\n";
+				print "\t" . $widget['NAME'] . "_" . "submit(ROOT,'" . $div . "','#form_" . $widget['NAME'] . "','#click_" . $widget['NAME'] . "');" . "\n";
+				print "\t" . "$('#form_" . $widget['NAME'] . "').trigger('submit');" . "\n";
+				print "\t" . '$("h4#date").text("Last Updated: "+Date());' . "\n";
+				if(!empty($widget["REFRESH_SECS"]) && $widget["REFRESH_SECS"] > 0)
+				{
+					$secs = $widget["REFRESH_SECS"] * 1000;
+					print "\tsetInterval(" . "\n\t\tfunction()\n\t\t{\n\t\t\t" . "$('#form_" . $widget['NAME'] . "').trigger('submit');;\n\t\t},\n\t" . $secs . ");\n";
+				}
+			}
+			else
+			{
+				switch ($widget["SIZE"])
+				{
+					case 'small':
+						print "\t" . "$('#" . $div . "').addClass('small_div_class');" . "\n";
+						break;
+					case 'medium':
+						print "\t" . "$('#" . $div . "').addClass('med_div_class');" . "\n";
+						break;
+					case 'big':
+						print "\t" . "$('#" . $div . "').addClass('big_div_class');" . "\n";
+						break;
+				}
+				print "\t" . $widget['NAME' ] . "_submit(ROOT,'" . $div . "','#form_" . $widget['NAME'] . "');\n";
+				print "\t" . "$('#form_" . $widget['NAME'] . "').trigger('submit');" . "\n";
+				print "\t" . '$("h4#date").text("Last Updated: "+Date());' . "\n";
+				if(!empty($widget["REFRESH_SECS"]) && $widget["REFRESH_SECS"] > 0)
+				{
+					$secs = $widget["REFRESH_SECS"] * 1000;
+					print "\tsetInterval(" . "\n\t\tfunction()\n\t\t{\n\t\t\t" . "$('#form_" . $widget['NAME'] . "').trigger('submit');;\n\t\t},\n\t" . $secs .");\n";
+				}
+			}
+			$no++;
+		}
+	}
+	print "});\n}\n";
+	print "/***************************************************************************************************/\n";
+}
+/*****************************************************************************************/
+
+function create_php($inc_file,$header)
+{
+	$tokens = explode('.',$inc_file);
+	$js_file = $tokens[0] . ".js";
+	$php_file = $tokens[0] . ".php";
+echo <<<EOF
+<?php
+/*
+	Open-Dashboard: Designed by Suraj Vijayan - First Release: August 2018
+*/
+header("Access-Control-Allow-Origin: *");
+session_start();
+include_once('../vars.inc');
+require_once('./dashboard.php');
+require_once('./$inc_file');
+
+print_header('$js_file','$php_file');
+// Dashboard Menu stuff..
+dashboard_header(\$ROOT,'$header');
+show_widgets(\$widgets_array);
+dashboard_footera(\$ROOT);
+?>
+EOF;
+}
+/*****************************************************************************************/
+
+function create_widgets($inc_file)
+{
+	include_once($inc_file);
+echo <<<EOF
+/* Suraj Vijayan
+ *
+ * Got this from: http://chapter31.com/2006/12/07/including-js-files-from-within-js-files/
+ *
+ */
+//this function includes all necessary js files for the application
+function include(file)
+{
+    var script  = document.createElement('script');
+    script.src  = file;
+    script.type = 'text/javascript';
+    script.defer = true;
+    document.getElementsByTagName('head').item(0).appendChild(script);
+}
+EOF;
+	print "\n";
+	foreach ($widgets_array as $row)
+	{
+		foreach ($row as $widget)
+		{
+			if($widget["TYPE"] == "chart")
+				$dir = "charts";
+			else
+				$dir = "grids";
+			print "include(" . "$dir" . "/" . $widget["NAME"] . ".js" .");\n";
+		}
+	}
 }
 /*****************************************************************************************/
 ?>

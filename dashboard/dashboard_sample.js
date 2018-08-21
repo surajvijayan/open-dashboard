@@ -95,24 +95,25 @@ AmCharts.ready(function(){
     });
     $(".date_input").datepicker({dateFormat: "yy-mm-dd"}).attr('readonly', 'true');
 	$('.chosen-select').chosen({max_selected_options:7}).change();	$("h4#date").text("Last Updated: "+Date());
-	$('#DIV_1').addClass('med_div_class');
+	$('#DIV_1').addClass('big_div_class');
 	$('#DIV_1').show();
 	get_country_fact_sheets_submit(ROOT,'DIV_1','#form_get_country_fact_sheets','#click_get_country_fact_sheets');
 	$('#form_get_country_fact_sheets').trigger('submit');
 	$("h4#date").text("Last Updated: "+Date());
-	$('#DIV_2').addClass('med_div_class');
+	$('#DIV_2').addClass('big_div_class');
 	$('#DIV_2').show();
 	country_area_submit(ROOT,'DIV_2','#form_country_area','#click_country_area');
 	$('#form_country_area').trigger('submit');
 	$("h4#date").text("Last Updated: "+Date());
-	$('#DIV_3').addClass('med_div_class');
+	$('#DIV_3').addClass('big_div_class');
 	$('#DIV_3').show();
 	country_gdp_submit(ROOT,'DIV_3','#form_country_gdp','#click_country_gdp');
 	$('#form_country_gdp').trigger('submit');
 	$("h4#date").text("Last Updated: "+Date());
-	$('#DIV_4').addClass('med_div_class');
+	$('#DIV_4').addClass('big_div_class');
 	countries_data_submit(ROOT,'DIV_4','#form_countries_data');
 	$('#form_countries_data').trigger('submit');
 	$("h4#date").text("Last Updated: "+Date());
 });
 }
+/***************************************************************************************************/
