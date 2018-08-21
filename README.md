@@ -88,7 +88,7 @@ Open-Dashboard needs few runtime Javascript and startup PHP files to be generate
 2. dashboard_&lt;pane_name&gt;.js
 3. dashboard_&lt;pane_name&gt;.php
 
-&lt;pane_name&gt;_widgets.js should have the list of all Javascript widgets configured within a <pane_name>.inc. sample_widgets.js is shown below:
+All three files should reside under dashoard/ directory. &lt;pane_name&gt;_widgets.js should have the list of all Javascript widgets configured within a <pane_name>.inc. sample_widgets.js is shown below:
 ```js
 /* Suraj Vijayan 
  *
@@ -115,6 +115,7 @@ include('grids/countries_data.js');
 <li>$php dashboard_create_js.php 
 Usage: $0 &lt;dashboard_xx.inc&gt; [php|js] &lt;header&gt;
 <br>
+<br>
 Please see below:
 <br>
 1. Generating dashboard_&lt;pane&gt;.js
@@ -122,10 +123,12 @@ Please see below:
 	Run the command:
 <li>$php dashboard_create_js.php dashboard_sample.inc js "sample Widgets" > dashboard_sample.js
 <br>
+<br>
 2. Generating dashboard_&lt;pane&gt;.php
 <br>
 	Run the command:
 <li>$php dashboard_create_js.php dashboard_sample.inc php "sample Widgets" > dashboard_sample.php
+<br>
 <br>
 3. Generating &lt;pane_name&gt;_widgets.js
 <br>
