@@ -3,7 +3,7 @@ A PHP dashboard framework to deploy chart and grid widgets. Light-weight and ver
 # Screenshot
 ![Optional Text](../master/docs/image1.png)
 # Configuration
-Open-Dashboard widgets are organized under different panes. Each pane has its own configuration file named: <pane_name>.inc. Widget configuration file in <pane_name>.inc is a PHP two dimentional array of widget structures. Each row maps to a row of widgets displayed by Open-Dashboard.
+Open-Dashboard widgets are organized under different panes. Each pane has its own configuration file named: &lt;pane_name&gt;.inc. Widget configuration file in &lt;pane_name&gt;.inc is a PHP two dimentional array of widget structures. Each row maps to a row of widgets displayed by Open-Dashboard.
 # Sample pane include file: dasnboard_sample.inc
 ```php
 <?php
@@ -63,7 +63,7 @@ should be 'chart' or 'grid'. Open-Dashboard integrates with Amcharts Javascript 
 ## SIZE
 Defines the size of widget window. It should be 'big','medium' or 'small'.
 ## NAME
-The exact name of the widget. Widget of type 'chart' should have a javascript file named: <widget_name>.js under dashboard/charts directory. Widget of type 'grid' should have a javascript file named: <widget_name>.js under dashboard/grids directory.
+The exact name of the widget. Widget of type 'chart' should have a javascript file named: &lt;widget_name&gt;.js under dashboard/charts directory. Widget of type 'grid' should have a javascript file named: &lt;widget_name&gt;.js under dashboard/grids directory.
 ## HEADING
 This should be set only for  widgets of type 'chart'. This value will be displayed as heading of chart widget. HEADING should be set to null for widgets of type 'grid'.
 ## REFRESH_SECS
@@ -75,20 +75,20 @@ Open-Dashboard supports plug-and-play type forms that could be attached to any w
 An array of parameters passed to form defined in widget configuration. These values are used when Open-Dashboard initially loads widgets.
 
 # Widget Javascript file
-Every widget should have a Javascript file named: '<widget_name>'.js in chart or grid directory under ROOT/dashboard. This file should have two functions named:
-1. '<widget_name>'_process(ROOT,params,header,div)
-2. '<widget_name>'_submit(ROOT,div,form_id,click_id)
+Every widget should have a Javascript file named: '&lt;widget_name&gt;'.js in chart or grid directory under ROOT/dashboard. This file should have two functions named:
+1. '&lt;widget_name&gt;'_process(ROOT,params,header,div)
+2. '&lt;widget_name&gt;'_submit(ROOT,div,form_id,click_id)
 
-Please refer to sample widget Javascript files under dashboard/charts and dashboards/grids directories. Please note, widget name in <widget_name>.js file name should exactly match the name configured in <pane_name>.inc file.
+Please refer to sample widget Javascript files under dashboard/charts and dashboards/grids directories. Please note, widget name in &lt;widget_name&gt.js file name should exactly match the name configured in &lt;pane_name&gt;.inc file.
 
 # Runtime Javascript files
 
-Open-Dashboard needs few runtime Javascript and startup PHP files to be generated once Widget Javascript files and <pane_name>.inc files are generated. The folllowing are the files:
-1. <pane_name>_widgets.js
-2. dashboard_<pane_name>.js
-3. dashboard_<pane_name>.php
+Open-Dashboard needs few runtime Javascript and startup PHP files to be generated once Widget Javascript files and &lt;pane_name&gt;.inc files are generated. The folllowing are the files:
+1. &lt;pane_name&gt;_widgets.js
+2. dashboard_&lt;pane_name&gt;.js
+3. dashboard_&lt;pane_name&gt;.php
 
-<pane_name>_widgets.js should have the list of all Javascript widgets configured within a <pane_name>.inc. sample_widgets.js is shown below:
+&lt;pane_name&gt;_widgets.js should have the list of all Javascript widgets configured within a <pane_name>.inc. sample_widgets.js is shown below:
 ```js
 /* Suraj Vijayan 
  *
@@ -114,11 +114,18 @@ include('grids/countries_data.js');
 <li>$php dashboard_create_js.php 
 Usage: $0 &lt;dashboard_xx.inc&gt; [php|js] &lt;header&gt;
 Please see below:
+<br>
 1. Generating dashboard_&lt;pane&gt;.js
+<br>
 	Run the command:
 <li>$php dashboard_create_js.php dashboard_sample.inc js "sample Widgets" > dashboard_sample.js
 2. Generating dashboard_&lt;pane&gt;.php
+<br>
+	Run the command:
 <li>$php dashboard_create_js.php dashboard_sample.inc php "sample Widgets" > dashboard_sample.php
+<li>
 3. Generating &lt;pane_name&gt;_widgets.js
+<br>
+	Run the command:
 <li>$php dashboard_create_js.php dashboard_sample.inc widgets "sample Widgets" > sample_widgets.js
 
