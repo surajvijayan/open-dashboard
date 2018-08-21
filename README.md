@@ -109,4 +109,4 @@ include('charts/country_gdp.js');
 include('grids/countries_data.js');
 ```
 <br>
-dashboard_<pane_name>.js and dashboard_<pane_name>.php are needed for each <pane> being supported by Open-Dashboard. 
+dashboard_<pane_name>.js and dashboard_<pane_name>.php are needed for each \<pane\> being supported by Open-Dashboard. 
