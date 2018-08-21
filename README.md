@@ -4,7 +4,7 @@ A PHP dashboard framework to deploy chart and grid widgets. Light-weight and ver
 ![Optional Text](../master/docs/image1.png)
 # Configuration
 Open-Dashboard widgets are organized under different panes. Each pane has its own configuration file named: &lt;pane_name&gt;.inc. Widget configuration file in &lt;pane_name&gt;.inc is a PHP two dimentional array of widget structures. Each row maps to a row of widgets displayed by Open-Dashboard.
-# Sample pane include file: dasnboard_sample.inc
+# Sample pane configuration file: dasnboard_sample.inc
 ```php
 <?php
 
@@ -110,20 +110,23 @@ include('charts/country_gdp.js');
 include('grids/countries_data.js');
 ```
 <br>
-&lt;pane_name&gt;_widgets.js,dashboard_&lt;pane_name&gt;.js and dashboard_<pane_name>.php are needed for each &lt;pane&gt; supported by Open-Dashboard. All three files are generated via running PHP command-line utility: dashboard/dashboard_create_php_js.php. dashboard/dashboard_create_php_js.php takes the following arguments:
+<br>
+&lt;pane_name&gt;_widgets.js,dashboard_&lt;pane_name&gt;.js and dashboard_&lt;pane_name&gt;.php are needed for each &lt;pane&gt; supported by Open-Dashboard. All three files are generated via running PHP command-line utility: dashboard/dashboard_create_php_js.php. dashboard/dashboard_create_php_js.php takes the following arguments:
 <li>$php dashboard_create_js.php 
 Usage: $0 &lt;dashboard_xx.inc&gt; [php|js] &lt;header&gt;
+<br>
 Please see below:
 <br>
 1. Generating dashboard_&lt;pane&gt;.js
 <br>
 	Run the command:
 <li>$php dashboard_create_js.php dashboard_sample.inc js "sample Widgets" > dashboard_sample.js
+<br>
 2. Generating dashboard_&lt;pane&gt;.php
 <br>
 	Run the command:
 <li>$php dashboard_create_js.php dashboard_sample.inc php "sample Widgets" > dashboard_sample.php
-<li>
+<br>
 3. Generating &lt;pane_name&gt;_widgets.js
 <br>
 	Run the command:
