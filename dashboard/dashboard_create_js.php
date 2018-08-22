@@ -1,28 +1,31 @@
 <?php
+include_once('../vars.inc');
 
-if ($argc == 4) 
+if ($argc == 2) 
 {
 	if (php_sapi_name() == 'cli')
 	{
-		switch($argv[2])
+		foreach($planes as $plane)
 		{
-			case "js":
-				create_js($argv[1]);
-				break;
-			case "php":
-				create_php($argv[1],$argv[3]);
-				break;
-			case "widgets":
-				create_widgets($argv[1],$argv[3]);
-				break;
-			default:
-				print "Usage: $0 <dashboard_xx.inc> [php|js] <header>" . "\n";
-				break;
+			switch ($argv[1])
+			{
+				case "js":
+					create_js($plane["name"]);
+					break;
+				case "php":
+					create_php($plane["name"]);
+					break;
+				case "widgets":
+					create_widgets($plane["name"]);
+					break;
+				default:
+					print "Usage: $argv[0] [js|php|widgets]" . "\n";
+			}
 		}
 	}
 }
 else
-	print "Usage: $0 <dashboard_xx.inc> [php|js|widgets] <header>" . "\n";
+	print "Usage: $argv[0] [js|php|widgets]" . "\n";
 
 /*********************************************************************************************/
 
@@ -130,9 +133,37 @@ EOF;
 }
 /*****************************************************************************************/
 
-function create_js($inc_file)
+function create_js($plane_name)
 {
-	include_once($inc_file);
+	global $planes;
+	$js_file = "dashboard_" . $plane_name . ".js";
+	$fd = fopen($js_file,"w");
+
+	$found = FALSE;
+	foreach($planes as $plane)
+	{
+		if($plane_name == $plane["name"])
+		{
+			$found = TRUE;
+			if (!isset($plane["config"]))
+			{
+				print "'config' token is not defined in plane:$plane_name inside vars.inc file!\n";
+				exit(0);
+			}
+		    if (!file_exists($plane["config"]))
+            {
+                print "Can't open:" . $plane["config"] . "!\n";
+                exit(0);
+            }
+			include_once($plane["config"]);
+			break;
+		}
+	}
+	if (!$found)
+	{
+		print "Plane:$plane_name is not defined in in vars.inc file!\n";
+		exit(0);
+	}
 	print_top();
 	print "\t" . '$("h4#date").text("Last Updated: "+Date());' . "\n";
 	$no = 1;
@@ -162,7 +193,7 @@ function create_js($inc_file)
 				if(!empty($widget["REFRESH_SECS"]) && $widget["REFRESH_SECS"] > 0)
 				{
 					$secs = $widget["REFRESH_SECS"] * 1000;
-					print "\tsetInterval(" . "\n\t\tfunction()\n\t\t{\n\t\t\t" . "$('#form_" . $widget['NAME'] . "').trigger('submit');;\n\t\t},\n\t" . $secs . ");\n";
+					print "\tsetInterval(" . "\n\t\tfunction()\n\t\t{\n\t\t\t" . "$('#form_" . $widget['NAME'] . "').trigger('submit');;\n\t\t},\n\t" . $secs . ");" . "\n";
 				}
 			}
 			else
@@ -193,14 +224,49 @@ function create_js($inc_file)
 	}
 	print "});\n}\n";
 	print "/***************************************************************************************************/\n";
+	fclose($fd);
 }
 /*****************************************************************************************/
 
-function create_php($inc_file,$header)
+function create_php($plane_name)
 {
-	$tokens = explode('.',$inc_file);
-	$js_file = $tokens[0] . ".js";
-	$php_file = $tokens[0] . ".php";
+	$inc_file = "";
+	$header = "";
+	global $planes;
+    $found = FALSE;
+    foreach($planes as $plane)
+    {
+        if($plane_name == $plane["name"])
+        {
+            $found = TRUE;
+            if (!isset($plane["config"]))
+            {
+                print "'config' token is not defined in plane:$plane_name inside vars.inc file!\n";
+                exit(0);
+            }
+            if (!isset($plane["header"]))
+            {
+                print "'header' token is not defined in plane:$plane_name inside vars.inc file!\n";
+                exit(0);
+            }
+            if (!file_exists($plane["config"]))
+            {
+                print "Can't open: " . $plane["config"] . "!\n";
+                exit(0);
+            }
+            $inc_file = $plane["config"];
+            $header = $plane["header"];
+			$tokens = explode('.',$inc_file);
+			$js_file = $tokens[0] . ".js";
+			$widgets_file = $plane_name . "_widgets.js";
+            break;
+        }
+    }
+    if (!$found)
+    {
+        print "Plane:$plane_name is not defined in in vars.inc file!\n";
+        exit(0);
+    }
 echo <<<EOF
 <?php
 /*
@@ -212,18 +278,53 @@ include_once('../vars.inc');
 require_once('./dashboard.php');
 require_once('./$inc_file');
 
-print_header('$js_file','$php_file');
+print_header('$js_file','$widgets_file');
 // Dashboard Menu stuff..
 dashboard_header(\$ROOT,'$header');
 show_widgets(\$widgets_array);
-dashboard_footera(\$ROOT);
+dashboard_footer(\$ROOT);
 ?>
 EOF;
 }
 /*****************************************************************************************/
 
-function create_widgets($inc_file)
+function create_widgets($plane_name)
 {
+    $inc_file = "";
+    global $planes;
+    $found = FALSE;
+    foreach($planes as $plane)
+    {
+        if($plane_name == $plane["name"])
+        {
+            $found = TRUE;
+            if (!isset($plane["config"]))
+            {
+                print "'config' token is not defined in plane:$plane_name inside vars.inc file!\n";
+                exit(0);
+            }
+            if (!file_exists($plane["config"]))
+            {
+                print "Can't open:" . $plane["config"] . "!\n";
+                exit(0);
+            }
+			else
+            {
+                $inc_file = $plane["config"];
+            }
+            if (!isset($plane["header"]))
+            {
+                print "'header' token is not defined in plane:$plane_name inside vars.inc file!\n";
+                exit(0);
+            }
+			break;
+        }
+    }
+    if (!$found)
+    {
+        print "Plane:$plane_name is not defined in in vars.inc file!\n";
+        exit(0);
+    }
 	include_once($inc_file);
 echo <<<EOF
 /* Suraj Vijayan
@@ -242,6 +343,8 @@ function include(file)
 }
 EOF;
 	print "\n";
+	if (!isset($widgets_array))
+		return;
 	foreach ($widgets_array as $row)
 	{
 		foreach ($row as $widget)
@@ -250,7 +353,7 @@ EOF;
 				$dir = "charts";
 			else
 				$dir = "grids";
-			print "include(" . "$dir" . "/" . $widget["NAME"] . ".js" .");\n";
+			print "include('" . "$dir" . "/" . $widget["NAME"] . ".js" ."');\n";
 		}
 	}
 }

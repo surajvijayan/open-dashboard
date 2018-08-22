@@ -4,7 +4,6 @@
 	First Release: Aug. 16th. 2018
 */
 header("Access-Control-Allow-Origin: *");
-session_start();
 include_once('../vars.inc');
 
 /***********************************************************************************************/

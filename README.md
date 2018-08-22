@@ -76,8 +76,8 @@ An array of parameters passed to form defined in widget configuration. These val
 
 # Widget Javascript file
 Every widget should have a Javascript file named: '&lt;widget_name&gt;'.js in chart or grid directory under ROOT/dashboard. This file should have two functions named:
-1. '&lt;widget_name&gt;'_process(ROOT,params,header,div)
-2. '&lt;widget_name&gt;'_submit(ROOT,div,form_id,click_id)
+1. &lt;widget_name&gt;_process(ROOT,params,header,div)
+2. &lt;widget_name&gt;_submit(ROOT,div,form_id,click_id)
 
 Please refer to sample widget Javascript files under dashboard/charts and dashboards/grids directories. Please note, widget name in &lt;widget_name&gt;.js file name should exactly match the name configured in &lt;pane_name&gt;.inc file.
 
