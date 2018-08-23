@@ -1,10 +1,10 @@
 # Open-dashboard
 A PHP dashboard framework to deploy chart and grid widgets. Light-weight and very flexible model. Javascript charting library: Amcharts and Javascript grid library: free-jqgrid have been integrated. Widgets fetch JSON formatted data from webservice and render sleek charts and grids. Jquery,AmCharts,free-jqgrid and font-awesome are the primary client side components. Here are the relevant links:
-<li>amCharts: https://www.amcharts.com/javascript-charts
-<li>free-jqgrid: https://free-jqgrid.github.io
-<li>Font-awesome: https://fontawesome.com
-<li>jQuery: https://jquery.com
-<li>jQuery UI: https://jqueryui.com
+amCharts: https://www.amcharts.com/javascript-charts
+free-jqgrid: https://free-jqgrid.github.io
+Font-awesome: https://fontawesome.com
+jQuery: https://jquery.com
+jQuery UI: https://jqueryui.com
 # Screenshots
 ![image1](../master/docs/image1.png)
 ![image2](../master/docs/image2.png)
