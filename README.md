@@ -174,7 +174,7 @@ Please see below:
 3. Generating &lt;pane_name&gt;_widgets.js files
 <br>
 	Run the command:
-<li>$php dashboard_create_js.php widgets 
+<li>$php dashboard_create_js.php widgets</li> 
 # Authors
 Suraj Vijayan <suraj.vijayan1966@gmail.com>
 # License
