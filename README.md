@@ -129,7 +129,7 @@ Open-Dashboard needs few runtime Javascript and startup PHP files to be generate
 2. dashboard_&lt;pane_name&gt;.js
 3. dashboard_&lt;pane_name&gt;.php
 
-All three files should reside under dashoard/ directory. &lt;pane_name&gt;_widgets.js will have the list of all Javascript widgets configured within a <pane_name>.inc. sample_widgets.js is shown below:
+All three files should reside under ROOT/dashoard/ directory. &lt;pane_name&gt;_widgets.js will have the list of all Javascript widgets configured within a <pane_name>.inc. sample_widgets.js is shown below:
 ```js
 /* Suraj Vijayan 
  *
@@ -178,4 +178,4 @@ Please see below:
 # Authors
 <li>Suraj Vijayan suraj.vijayan1966@gmail.com
 # License
-This project is licensed under GPL-3.0-or-later license - see the LICENSE.md file for details.
+This project is licensed under GPL-3.0-or-later license - see the LICENSE.md ![LICENSE.md](../master/LICENSE.md)file for details.
