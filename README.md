@@ -109,8 +109,6 @@ include('charts/country_area.js');
 include('charts/country_gdp.js');
 include('grids/countries_data.js');
 ```
-<br>
-<br>
 ## Generating runtime Javascript and PHP files
 Three runtime files are generated for eac pane of open-dashborad, they are: &lt;pane_name&gt;_widgets.js,dashboard_&lt;pane_name&gt;.js and dashboard_&lt;pane_name&gt;. All three files are generated via running PHP command-line utility: dashboard/dashboard_create_php_js.php. All runtime files should be generated under dashboard directory. dashboard/dashboard_create_php_js.php takes the following arguments:
 <li>$php dashboard_create_js.php 
