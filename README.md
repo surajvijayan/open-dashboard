@@ -152,7 +152,7 @@ include('grids/countries_data.js');
 ```
 ## Generating runtime Javascript and PHP files
 Three runtime files are generated for each pane of Open-Dashborad, they are: &lt;pane_name&gt;_widgets.js,dashboard_&lt;pane_name&gt;.js and dashboard_&lt;pane_name&gt;. All three files are generated via running PHP command-line utility: ROOT/dashboard/dashboard_create_php_js.php. All runtime files should be generated under ROOT/dashboard directory. ROOT/dashboard/dashboard_create_php_js.php takes the following arguments:
-<li>$php dashboard_create_js.php 
++$php dashboard_create_js.php 
 <br>
 Usage: dashboard_create_js.php [js|php|widgets]
 <br>
@@ -162,19 +162,19 @@ Please see below:
 1. Generating  dashboard_&lt;pane&gt;.js files
 <br>
 	Run the command:
-<li>$php dashboard_create_js.php js
++$php dashboard_create_js.php js
 <br>
 <br>
 2. Generating dashboard_&lt;pane&gt;.php files
 <br>
 	Run the command:
-<li>$php dashboard_create_js.php php 
++$php dashboard_create_js.php php 
 <br>
 <br>
 3. Generating &lt;pane_name&gt;_widgets.js files
 <br>
 	Run the command:
-<li>$php dashboard_create_js.php widgets</li> 
++$php dashboard_create_js.php widgets<
 # Authors
 Suraj Vijayan <suraj.vijayan1966@gmail.com>
 # License
