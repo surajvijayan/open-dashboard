@@ -176,6 +176,6 @@ Please see below:
 	Run the command:
 <li>$php dashboard_create_js.php widgets 
 # Authors
-<li>Suraj Vijayan suraj.vijayan1966@gmail.com
+Suraj Vijayan <suraj.vijayan1966@gmail.com>
 # License
 This project is licensed under GPL-3.0-or-later license - see the LICENSE.md ![LICENSE.md](../master/LICENSE.md)file for details.
