@@ -34,7 +34,7 @@ $panes = array(
 ?>
 ```
 ## NAME
-This is the of the pane.
+Name of the pane.
 ## HEADER
 Text displayed to identify a pane.
 ## CONFIG
@@ -116,6 +116,159 @@ Every widget should have a Javascript file named: '&lt;widget_name&gt;'.js in ch
 
 Please refer to sample widget Javascript files under ROOT/dashboard/charts and ROOT/dashboards/grids directories. Please note, widget name in &lt;widget_name&gt;.js file name should exactly match the name configured in &lt;pane_name&gt;.inc file.
 
+# Sample Chart widget Javascript
+```js
+function country_gdp_process(ROOT,params,header,div)
+{
+    var chart,url,chartData;
+
+    url = ROOT;
+    $('#'+div+'_curtain').show();
+    $.get(url,params, function (data)
+    {
+        chartData = $.parseJSON(JSON.stringify(data));   //parse JSON
+        var valueAxis = new AmCharts.ValueAxis();
+        valueAxis.dashLength = 5;
+        valueAxis.title = "GDP (current US$)";
+        valueAxis.axisAlpha = 0;
+
+        var graph1 = new AmCharts.AmGraph();
+        graph1.numberFormatter = {precision:-1, decimalSeparator:'.', thousandsSeparator:','};
+        graph1.valueField = "value";
+        graph1.type = "column";
+        graph1.fillAlphas = 0.6;
+        graph1.bullet = "round";
+        graph1.balloonText = "<table>";
+        graph1.balloonText += "<tr><th align=left>Country</th><td align=left>[[countryiso3code]]</td></tr>";
+        graph1.balloonText += "<tr><th align=left>GDP</th><td align=left>[[value]]</td></tr>";
+        graph1.balloonText += "<tr><th align=left>Year</th><td align=left>[[date]]</td></tr>";
+        graph1.balloonText += "</table>";
+        graph1.title = "Country";
+        graph1.bulletBorderThickness = 2;
+        graph1.lineThickness = 1;
+        graph1.lineAlpha = 0.5;
+
+        var legend = new AmCharts.AmLegend();
+        legend.valueAlign = "left";
+        legend.valueWidth = 35;
+        legend.valueText = "[[countryiso3code]]:[[value]]";
+
+        var chartCursor = new AmCharts.ChartCursor();
+        chart = new AmCharts.AmSerialChart();
+        chart.usePrefixes = true;
+        chart.prefixesOfBigNumbers = [{number:1e+6,prefix:"M"}, {number:1e+9,prefix:"B"},{number:1e+12,prefix:"T"}];
+        chart.numberFormatter = {precision:-1, decimalSeparator:'.', thousandsSeparator:','};
+        chart.pathToImages = ROOT + "webservices/amcharts/images/";
+        chart.dataProvider = chartData[1];
+        chart.categoryField = "countryiso3code";
+        chart.startDuration = 1;
+        chart.sequencedAnimation = false;
+        chart.categoryAxis = { labelRotation: "45", centerLabels: true }
+        chart["export"] = {"enabled": true};
+        chart.addValueAxis(valueAxis);
+        chart.addGraph(graph1);
+        chart.addTitle(header);
+        chart.addLegend(legend, "legenddiv");
+        chart.addChartCursor(chartCursor);
+
+        chart.write(div);
+    }).done(function( data )
+    {
+        $('#'+div+'_curtain').hide();
+    });
+}
+/***************************************************************************************************/
+
+function country_gdp_submit(ROOT,div,form_id,click_id)
+{
+    var countries,c_codes,fyear,webservice;
+    $(form_id).submit(
+        function(e)
+        {
+            e.preventDefault();
+            countries = $(form_id+' select[name=country] option:selected').map(function(){ return this.value }).get().join(';');
+            c_codes = $(form_id+' select[name=country] option:selected').map(function(){ return this.value }).get().join(';');
+            fyear = $(form_id+' select[name=fyear] option:selected').val();
+            header = 'GDP for Countries:'+countries+' in year:'+fyear;
+            $('#'+div).empty();
+            webservice = countries+'/indicators/NY.GDP.MKTP.CD?date='+fyear+'&format=json';
+            country_gdp_process('https://api.worldbank.org/v2/countries/'+webservice,'',header,div);
+            $('#'+div).show();
+        });
+        $(click_id).click(
+            function()
+            {
+                $('#'+div).slideToggle();
+                $(click_id).toggleClass('fa-chevron-circle-down fa-chevron-circle-up fa-2x fa-2x');
+            });
+}
+/***************************************************************************************************/
+```
+``` Sample  Grid widget Javascript
+function countries_data_process(ROOT,service,flag,table_id)
+{
+    var url;
+    var region = $('#form_countries_data select[name=region] option:selected').val();
+    var title = 'Countries in region:'+region;
+
+    var url = ROOT;
+    jQuery('#'+table_id).jqGrid({
+    url:url,
+    loadonce: true,
+    mtype: 'GET',
+    datatype: 'json',
+    colNames:[
+                'Name',
+                'Region',
+                'Subregion',
+                'Capital',
+                'Population',
+                'Area',
+                'GINI Index',
+                'Flag'
+                //'borders'
+            ],
+    colModel:[
+        {name:'name',width:200},
+        {name:'region',width:200},
+        {name:'subregion',width:200},
+        {name:'capital',width:200},
+        {name:'population',width:130,template: "integer"},
+        {name:'area',width:130,template: "integer",formatoptions: { suffix: " sq.km."}},
+        {name:'gini',width:80,template: "number",formatoptions:{decimalPlaces: 1}},
+        {name:'flag',width:230,formatter:'link'}
+    ],
+    iconSet: "fontAwesome",
+    rowNum:20,
+    rowList:[10,20,30],
+    pager: true,
+    viewrecords: true,
+    sortorder: "desc",
+    caption: title,
+    hiddengrid: flag,
+    shrinkToFit: false,
+    subGrid: false
+    }).jqGrid("navGrid", {refresh:false,edit: false,add: false,del: false,search: false,view: false});
+}
+/*****************************************************************************************/
+
+function countries_data_submit(ROOT,div,form_id)
+{
+    var region,webservice;
+    $(form_id).submit(
+        function(e)
+        {
+            e.preventDefault();
+            region = $(form_id+' select[name=region] option:selected').val();
+            name = $(form_id+' select[name=region] option:selected').text();
+            webservice = '?fields=name;capital;population;area;flag;region;subregion;gini';
+            $('#'+div).GridUnload();
+            countries_data_process('https://restcountries.eu/rest/v2/regionalbloc/'+region+webservice,'test',false,div);
+            $('#'+div).show();
+        });
+}
+/*****************************************************************************************/
+```
 # Runtime Javascript and PHP files
 
 Open-Dashboard needs few runtime Javascript and startup PHP files to be generated once Widget Javascript files and &lt;pane_name&gt;.inc files are generated. The folllowing are the files:
@@ -158,7 +311,7 @@ Run the command: $php dashboard_create_js.php js
 Run the command: $php dashboard_create_js.php php 
 ### Generating &lt;pane_name&gt;_widgets.js files
 Run the command: $php dashboard_create_js.php widgets
-# Authors
+# Author
 Suraj Vijayan <suraj.vijayan1966@gmail.com>
 # License
 This project is licensed under GPL-3.0-or-later license - see ![LICENSE.md](../master/LICENSE.md) file for details.
