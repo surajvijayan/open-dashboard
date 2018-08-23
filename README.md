@@ -10,7 +10,7 @@ A PHP dashboard framework to deploy chart and grid widgets. Light-weight and ver
 ![image2](../master/docs/image2.png)
 # Installation
 Here are the quick steps to get going within minutes:
-1. Clone git repository: git clone https://gist.github.com/109311bb0361f32d87a2.git open-dashboard under web server DOCUMENT ROOT
+1. Clone git repository: git clone git@github.com:surajvijayan/open-dashboard.git open-dashboard under web server DOCUMENT ROOT
 2. Enable PHP support on your web server. PHP support is built-in for most linux distributions
 3. Open-Dashboard uses PHP command line utility to generate few files. Install php-cli for your OS. Refer: http://www.php-cli.com/ for more information
 4. Edit open-dashboard/vars.inc file and set ROOT to point to open-dashboard directory
