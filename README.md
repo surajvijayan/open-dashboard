@@ -112,7 +112,7 @@ include('grids/countries_data.js');
 <br>
 <br>
 ## Generating runtime Javascript and PHP files
-&lt;pane_name&gt;_widgets.js,dashboard_&lt;pane_name&gt;.js and dashboard_&lt;pane_name&gt;.php are needed for each &lt;pane&gt; supported by Open-Dashboard. All three files are generated via running PHP command-line utility: dashboard/dashboard_create_php_js.php. All runtime files should be generated under $ROOT/dashboard directory. dashboard/dashboard_create_php_js.php takes the following arguments:
+Three runtime files are generated for eac pane of open-dashborad, they are: &lt;pane_name&gt;_widgets.js,dashboard_&lt;pane_name&gt;.js and dashboard_&lt;pane_name&gt;. All three files are generated via running PHP command-line utility: dashboard/dashboard_create_php_js.php. All runtime files should be generated under dashboard directory. dashboard/dashboard_create_php_js.php takes the following arguments:
 <li>$php dashboard_create_js.php 
 <br>
 Usage: dashboard_create_js.php [js|php|widgets]
