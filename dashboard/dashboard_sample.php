@@ -1,8 +1,9 @@
+
 <?php
 /*
 	Open-Dashboard: Designed by Suraj Vijayan - First Release: August 2018
 */
-header("Access-Control-Allow-Origin: *");
+header('Access-Control-Allow-Origin: *');
 session_start();
 include_once('../vars.inc');
 require_once('./dashboard.php');

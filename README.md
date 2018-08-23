@@ -81,14 +81,14 @@ Every widget should have a Javascript file named: '&lt;widget_name&gt;'.js in ch
 
 Please refer to sample widget Javascript files under dashboard/charts and dashboards/grids directories. Please note, widget name in &lt;widget_name&gt;.js file name should exactly match the name configured in &lt;pane_name&gt;.inc file.
 
-# Runtime Javascript files
+# Runtime Javascript and PHP files
 
 Open-Dashboard needs few runtime Javascript and startup PHP files to be generated once Widget Javascript files and &lt;pane_name&gt;.inc files are generated. The folllowing are the files:
 1. &lt;pane_name&gt;_widgets.js
 2. dashboard_&lt;pane_name&gt;.js
 3. dashboard_&lt;pane_name&gt;.php
 
-All three files should reside under dashoard/ directory. &lt;pane_name&gt;_widgets.js should have the list of all Javascript widgets configured within a <pane_name>.inc. sample_widgets.js is shown below:
+All three files should reside under dashoard/ directory. &lt;pane_name&gt;_widgets.js will have the list of all Javascript widgets configured within a <pane_name>.inc. sample_widgets.js is shown below:
 ```js
 /* Suraj Vijayan 
  *
@@ -111,28 +111,29 @@ include('grids/countries_data.js');
 ```
 <br>
 <br>
-&lt;pane_name&gt;_widgets.js,dashboard_&lt;pane_name&gt;.js and dashboard_&lt;pane_name&gt;.php are needed for each &lt;pane&gt; supported by Open-Dashboard. All three files are generated via running PHP command-line utility: dashboard/dashboard_create_php_js.php. dashboard/dashboard_create_php_js.php takes the following arguments:
+## Runtime Javascript and PHP files
+&lt;pane_name&gt;_widgets.js,dashboard_&lt;pane_name&gt;.js and dashboard_&lt;pane_name&gt;.php are needed for each &lt;pane&gt; supported by Open-Dashboard. All three files are generated via running PHP command-line utility: dashboard/dashboard_create_php_js.php. All runtime files should be generated under $ROOT/dashboard directory. dashboard/dashboard_create_php_js.php takes the following arguments:
 <li>$php dashboard_create_js.php 
 <br>
-Usage: $0 &lt;dashboard_xx.inc&gt; [php|js] &lt;header&gt;
+Usage: dashboard_create_js.php [js|php|widgets]
 <br>
 <br>
 Please see below:
 <br>
-1. Generating dashboard_&lt;pane&gt;.js
+1. Generating  dashboard_&lt;pane&gt;.js files
 <br>
 	Run the command:
-<li>$php dashboard_create_js.php dashboard_sample.inc js "sample Widgets" > dashboard_sample.js
+<li>$php dashboard_create_js.php js
 <br>
 <br>
-2. Generating dashboard_&lt;pane&gt;.php
-<br>
-	Run the command:
-<li>$php dashboard_create_js.php dashboard_sample.inc php "sample Widgets" > dashboard_sample.php
-<br>
-<br>
-3. Generating &lt;pane_name&gt;_widgets.js
+2. Generating dashboard_&lt;pane&gt;.php files
 <br>
 	Run the command:
-<li>$php dashboard_create_js.php dashboard_sample.inc widgets "sample Widgets" > sample_widgets.js
+<li>$php dashboard_create_js.php php 
+<br>
+<br>
+3. Generating &lt;pane_name&gt;_widgets.js files
+<br>
+	Run the command:
+<li>$php dashboard_create_js.php widgets 
 
