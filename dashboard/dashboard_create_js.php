@@ -5,18 +5,18 @@ if ($argc == 2)
 {
 	if (php_sapi_name() == 'cli')
 	{
-		foreach($planes as $plane)
+		foreach($panes as $pane)
 		{
 			switch ($argv[1])
 			{
             case "js":
-                    create_js($plane["name"]);
+                    create_js($pane["name"]);
 					break;
 				case "php":
-					create_php($plane["name"]);
+					create_php($pane["name"]);
 					break;
 				case "widgets":
-					create_widgets($plane["name"]);
+					create_widgets($pane["name"]);
 					break;
 				default:
 					print "Usage: $argv[0] [js|php|widgets]" . "\n";
@@ -133,35 +133,35 @@ AmCharts.ready(function(){
 }
 /*****************************************************************************************/
 
-function create_js($plane_name)
+function create_js($pane_name)
 {
-	global $planes;
-	$js_file = "dashboard_" . $plane_name . ".js";
+	global $panes;
+	$js_file = "dashboard_" . $pane_name . ".js";
 	$fd = fopen($js_file,"w");
 
 	$found = FALSE;
-	foreach($planes as $plane)
+	foreach($panes as $pane)
 	{
-		if($plane_name == $plane["name"])
+		if($pane_name == $pane["name"])
 		{
 			$found = TRUE;
-			if (!isset($plane["config"]))
+			if (!isset($pane["config"]))
 			{
-				print "'config' token is not defined in plane:$plane_name inside vars.inc file!\n";
+				print "'config' token is not defined in pane:$pane_name inside vars.inc file!\n";
 				exit(0);
 			}
-		    if (!file_exists($plane["config"]))
+		    if (!file_exists($pane["config"]))
             {
-                print "Can't open:" . $plane["config"] . "!\n";
+                print "Can't open:" . $pane["config"] . "!\n";
                 exit(0);
             }
-			include_once($plane["config"]);
+			include_once($pane["config"]);
 			break;
 		}
 	}
 	if (!$found)
 	{
-		print "Plane:$plane_name is not defined in in vars.inc file!\n";
+		print "Plane:$pane_name is not defined in in vars.inc file!\n";
 		exit(0);
 	}
 	print_top($fd);
@@ -228,46 +228,46 @@ function create_js($plane_name)
 }
 /*****************************************************************************************/
 
-function create_php($plane_name)
+function create_php($pane_name)
 {
 	$inc_file = "";
 	$header = "";
-	global $planes;
+	global $panes;
     $found = FALSE;
-    foreach($planes as $plane)
+    foreach($panes as $pane)
     {
-        if($plane_name == $plane["name"])
+        if($pane_name == $pane["name"])
         {
             $found = TRUE;
-            if (!isset($plane["config"]))
+            if (!isset($pane["config"]))
             {
-                print "'config' token is not defined in plane:$plane_name inside vars.inc file!\n";
+                print "'config' token is not defined in pane:$pane_name inside vars.inc file!\n";
                 exit(0);
             }
-            if (!isset($plane["header"]))
+            if (!isset($pane["header"]))
             {
-                print "'header' token is not defined in plane:$plane_name inside vars.inc file!\n";
+                print "'header' token is not defined in pane:$pane_name inside vars.inc file!\n";
                 exit(0);
             }
-            if (!file_exists($plane["config"]))
+            if (!file_exists($pane["config"]))
             {
-                print "Can't open: " . $plane["config"] . "!\n";
+                print "Can't open: " . $pane["config"] . "!\n";
                 exit(0);
             }
-            $inc_file = $plane["config"];
-            $header = $plane["header"];
+            $inc_file = $pane["config"];
+            $header = $pane["header"];
 			$tokens = explode('.',$inc_file);
 			$js_file = $tokens[0] . ".js";
-			$widgets_file = $plane_name . "_widgets.js";
+			$widgets_file = $pane_name . "_widgets.js";
             break;
         }
     }
     if (!$found)
     {
-        print "Plane:$plane_name is not defined in in vars.inc file!\n";
+        print "Plane:$pane_name is not defined in in vars.inc file!\n";
         exit(0);
     }
-    $php_file = "dashboard_" . $plane_name . ".php";
+    $php_file = "dashboard_" . $pane_name . ".php";
     $fd = fopen($php_file,"w");
 
 fputs($fd,"
@@ -291,33 +291,33 @@ dashboard_footer(\$ROOT);
 }
 /*****************************************************************************************/
 
-function create_widgets($plane_name)
+function create_widgets($pane_name)
 {
     $inc_file = "";
-    global $planes;
+    global $panes;
     $found = FALSE;
-    foreach($planes as $plane)
+    foreach($panes as $pane)
     {
-        if($plane_name == $plane["name"])
+        if($pane_name == $pane["name"])
         {
             $found = TRUE;
-            if (!isset($plane["config"]))
+            if (!isset($pane["config"]))
             {
-                print "'config' token is not defined in plane:$plane_name inside vars.inc file!\n";
+                print "'config' token is not defined in pane:$pane_name inside vars.inc file!\n";
                 exit(0);
             }
-            if (!file_exists($plane["config"]))
+            if (!file_exists($pane["config"]))
             {
-                print "Can't open:" . $plane["config"] . "!\n";
+                print "Can't open:" . $pane["config"] . "!\n";
                 exit(0);
             }
 			else
             {
-                $inc_file = $plane["config"];
+                $inc_file = $pane["config"];
             }
-            if (!isset($plane["header"]))
+            if (!isset($pane["header"]))
             {
-                print "'header' token is not defined in plane:$plane_name inside vars.inc file!\n";
+                print "'header' token is not defined in pane:$pane_name inside vars.inc file!\n";
                 exit(0);
             }
 			break;
@@ -325,11 +325,11 @@ function create_widgets($plane_name)
     }
     if (!$found)
     {
-        print "Plane:$plane_name is not defined in in vars.inc file!\n";
+        print "Plane:$pane_name is not defined in in vars.inc file!\n";
         exit(0);
     }
     include_once($inc_file);
-    $widgets_file = $plane_name . "_widgets.js";
+    $widgets_file = $pane_name . "_widgets.js";
     $fd = fopen($widgets_file,"w");
     fputs($fd,"
 /* Suraj Vijayan

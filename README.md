@@ -3,8 +3,29 @@ A PHP dashboard framework to deploy chart and grid widgets. Light-weight and ver
 # Screenshot
 ![Optional Text](../master/docs/image1.png)
 # Configuration
-Open-Dashboard widgets are organized under different panes. Each pane has its own configuration file named: &lt;pane_name&gt;.inc. Widget configuration file in &lt;pane_name&gt;.inc is a PHP two dimentional array of widget structures. Each row maps to a row of widgets displayed by Open-Dashboard.
-# Sample pane configuration file: dashboard_sample.inc
+Open-Dashboard widgets are organized under different panes. Each pane has its own configuration file named: &lt;pane_name&gt;.inc. Widget configuration file in &lt;pane_name&gt;.inc is a PHP two dimentional array of widget structures. Each row maps to a row of widgets displayed by Open-Dashboard. Another configuration file: vars.inc is the master configuration file that has details on all panes. This ReadeMe refers to ROOT as the base location where open-dashboard is installed under web server.
+# Sample Master configuration file:vars.inc
+```php
+<?php
+global $ROOT,$panes;
+$panes = array();
+$ROOT = "https://127.0.0.1/open-dashboard";
+$panes = array(
+				1 => array(
+					"name" => "sample",
+					"header" => "Sample Widgets",
+					"config" => "dashboard_sample.inc"
+				)
+			);
+?>
+```
+## NAME
+This is an unique name assigned to a pane.
+## HEADER
+Text displayed to identify a pane.
+## CONFIG
+The configuration file for pane.
+# Sample pane configuration file:dashboard_sample.inc
 ```php
 <?php
 

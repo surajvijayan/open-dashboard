@@ -451,13 +451,19 @@ function dashboard_form($widget)
 
 function dashboard_header($ROOT,$view)
 {
+global $panes;
 echo <<<EOF
 <body id="body1" class="ui-widget-content">  
     <span style="width:100%;height:75px;margin-left:3px;margin-right:3px;border:none">
             <ul class="nav" id="list2">
             <li id=t1 class="dropdown ui-widget-header"><a href="#"><i class="ui-widget-content fa fa-bars"></i></a>
             <ul id="list1">
-                <li><a href="./dashboard_sample.php">Sample Widgets</a></li>
+EOF;
+		foreach($panes as $pane)
+        {
+			print "<li><a href=./dashboard_" . $pane["name"] . ".php>" . $pane["header"] . "</a></li>";
+		}
+echo <<<EOF
             </ul>
             </li>
             </ul>
