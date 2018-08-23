@@ -1,4 +1,4 @@
-# Open-dashboard
+# Open-Dashboard
 A PHP dashboard framework to deploy chart and grid widgets. Light-weight and very flexible model. Javascript charting library: Amcharts and Javascript grid library: free-jqgrid have been integrated. Widgets fetch JSON formatted data from webservice and render sleek charts and grids. Jquery,AmCharts,free-jqgrid and font-awesome are the primary client side components. Here are the relevant links:
 <br>
 amCharts: https://www.amcharts.com/javascript-charts
@@ -14,6 +14,12 @@ jQuery UI: https://jqueryui.com
 # Screenshots
 ![image1](../master/docs/image1.png)
 ![image2](../master/docs/image2.png)
+# Installation
+Here are the quick steps to get going within minutes:
+<li>Clone git repository: git clone https://gist.github.com/109311bb0361f32d87a2.git open-dashboard under web server DOCUMENT ROOT
+<li>Enable PHP support on your web server. PHP support is built-in for most linux distributions
+<li>Open-Dashboard uses PHP command line utility to generate few files. Install php-cli for your OS. Refer: http://www.php-cli.com/ for more information
+<li>Edit open-dashboard/vars.inc file and set ROOT to point to open-dashboard directory
 # Configuration
 Open-Dashboard widgets are organized under different panes. Each pane has its own configuration file named: &lt;pane_name&gt;.inc. Widgets configuration in &lt;pane_name&gt;.inc is a PHP two dimentional array of widget structures. Each row maps to a row of widgets displayed by Open-Dashboard. Another configuration file: vars.inc is the master configuration file that has details on all panes. This ReadeMe refers to ROOT as the base location where Open-Dashboard is installed under web server. Master configuration file:vars.inc should reside under ROOT directory and all pane configuration files should reside under ROOT/dashboard directory.
 # Sample Master configuration file:vars.inc
@@ -143,7 +149,7 @@ include('charts/country_gdp.js');
 include('grids/countries_data.js');
 ```
 ## Generating runtime Javascript and PHP files
-Three runtime files are generated for each pane of Open-Dashborad, they are: &lt;pane_name&gt;_widgets.js,dashboard_&lt;pane_name&gt;.js and dashboard_&lt;pane_name&gt;. All three files are generated via running PHP command-line utility: ROOT/dashboard/dashboard_create_php_js.php. All runtime files should be generated under dashboard directory. ROOT/dashboard/dashboard_create_php_js.php takes the following arguments:
+Three runtime files are generated for each pane of Open-Dashborad, they are: &lt;pane_name&gt;_widgets.js,dashboard_&lt;pane_name&gt;.js and dashboard_&lt;pane_name&gt;. All three files are generated via running PHP command-line utility: ROOT/dashboard/dashboard_create_php_js.php. All runtime files should be generated under ROOT/dashboard directory. ROOT/dashboard/dashboard_create_php_js.php takes the following arguments:
 <li>$php dashboard_create_js.php 
 <br>
 Usage: dashboard_create_js.php [js|php|widgets]
@@ -167,4 +173,7 @@ Please see below:
 <br>
 	Run the command:
 <li>$php dashboard_create_js.php widgets 
-
+# Authors
+<li>Suraj Vijayan suraj.vijayan1966@gmail.com
+# License
+This project is licensed under GPL-3.0-or-later license - see the LICENSE.md file for details.
