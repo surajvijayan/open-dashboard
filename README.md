@@ -4,7 +4,7 @@ A PHP dashboard framework to deploy chart and grid widgets. Light-weight and ver
 ![Optional Text](../master/docs/image1.png)
 # Configuration
 Open-Dashboard widgets are organized under different panes. Each pane has its own configuration file named: &lt;pane_name&gt;.inc. Widget configuration file in &lt;pane_name&gt;.inc is a PHP two dimentional array of widget structures. Each row maps to a row of widgets displayed by Open-Dashboard.
-# Sample pane configuration file: dasnboard_sample.inc
+# Sample pane configuration file: dashboard_sample.inc
 ```php
 <?php
 
@@ -110,7 +110,7 @@ include('charts/country_gdp.js');
 include('grids/countries_data.js');
 ```
 ## Generating runtime Javascript and PHP files
-Three runtime files are generated for eac pane of open-dashborad, they are: &lt;pane_name&gt;_widgets.js,dashboard_&lt;pane_name&gt;.js and dashboard_&lt;pane_name&gt;. All three files are generated via running PHP command-line utility: dashboard/dashboard_create_php_js.php. All runtime files should be generated under dashboard directory. dashboard/dashboard_create_php_js.php takes the following arguments:
+Three runtime files are generated for each pane of open-dashborad, they are: &lt;pane_name&gt;_widgets.js,dashboard_&lt;pane_name&gt;.js and dashboard_&lt;pane_name&gt;. All three files are generated via running PHP command-line utility: dashboard/dashboard_create_php_js.php. All runtime files should be generated under dashboard directory. dashboard/dashboard_create_php_js.php takes the following arguments:
 <li>$php dashboard_create_js.php 
 <br>
 Usage: dashboard_create_js.php [js|php|widgets]
