@@ -204,7 +204,8 @@ function country_gdp_submit(ROOT,div,form_id,click_id)
 }
 /***************************************************************************************************/
 ```
-``` Sample  Grid widget Javascript
+# Sample  Grid widget Javascript
+```js
 function countries_data_process(ROOT,service,flag,table_id)
 {
     var url;
