@@ -16,10 +16,12 @@ jQuery UI: https://jqueryui.com
 ![image2](../master/docs/image2.png)
 # Installation
 Here are the quick steps to get going within minutes:
-<li>Clone git repository: git clone https://gist.github.com/109311bb0361f32d87a2.git open-dashboard under web server DOCUMENT ROOT
-<li>Enable PHP support on your web server. PHP support is built-in for most linux distributions
-<li>Open-Dashboard uses PHP command line utility to generate few files. Install php-cli for your OS. Refer: http://www.php-cli.com/ for more information
-<li>Edit open-dashboard/vars.inc file and set ROOT to point to open-dashboard directory
+1. Clone git repository: git clone https://gist.github.com/109311bb0361f32d87a2.git open-dashboard under web server DOCUMENT ROOT
+2. Enable PHP support on your web server. PHP support is built-in for most linux distributions
+3. Open-Dashboard uses PHP command line utility to generate few files. Install php-cli for your OS. Refer: http://www.php-cli.com/ for more information
+4. Edit open-dashboard/vars.inc file and set ROOT to point to open-dashboard directory
+5. Ensure Internet access is enabled on your web server
+5. Start web server. Try accessing ROOT/dashboard/dashboard_sample.php from you browser
 # Configuration
 Open-Dashboard widgets are organized under different panes. Each pane has its own configuration file named: &lt;pane_name&gt;.inc. Widgets configuration in &lt;pane_name&gt;.inc is a PHP two dimentional array of widget structures. Each row maps to a row of widgets displayed by Open-Dashboard. Another configuration file: vars.inc is the master configuration file that has details on all panes. This ReadeMe refers to ROOT as the base location where Open-Dashboard is installed under web server. Master configuration file:vars.inc should reside under ROOT directory and all pane configuration files should reside under ROOT/dashboard directory.
 # Sample Master configuration file:vars.inc
