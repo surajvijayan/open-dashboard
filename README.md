@@ -155,24 +155,15 @@ Three runtime files are generated for each pane of Open-Dashborad, they are:
 1. &lt;pane_name&gt;_widgets.js
 2. dashboard_&lt;pane_name&gt;.js
 3. dashboard_&lt;pane_name&gt;.php
-All three files are generated via running PHP command-line utility: ROOT/dashboard/dashboard_create_php_js.php. All runtime files should be generated under ROOT/dashboard directory. ROOT/dashboard/dashboard_create_php_js.php takes the following arguments:
-<br>
-$php dashboard_create_js.php 
+All three files are generated via running PHP command-line utility: ROOT/dashboard/dashboard_create_php_js.php. All runtime files should be generated under ROOT/dashboard directory. ROOT/dashboard/dashboard_create_php_js.php takes the following arguments: $php dashboard_create_js.php 
 <br>
 Usage: dashboard_create_js.php [js|php|widgets]
-<br>
-Please see below:
-1. Generating  dashboard_&lt;pane&gt;.js files
-* Run the command: $php dashboard_create_js.php js
-<br>
-<br>
-2. Generating dashboard_&lt;pane&gt;.php files
-<br>
-* Run the command: $php dashboard_create_js.php php 
-<br>
-<br>
-3. Generating &lt;pane_name&gt;_widgets.js files
-* Run the command: $php dashboard_create_js.php widgets
+### Generating  dashboard_&lt;pane&gt;.js files
+Run the command: $php dashboard_create_js.php js
+### Generating dashboard_&lt;pane&gt;.php files
+Run the command: $php dashboard_create_js.php php 
+### Generating &lt;pane_name&gt;_widgets.js files
+Run the command: $php dashboard_create_js.php widgets
 # Authors
 Suraj Vijayan <suraj.vijayan1966@gmail.com>
 # License
