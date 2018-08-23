@@ -1,7 +1,7 @@
 <?php
 global $ROOT,$panes;
 $panes = array();
-$ROOT = "https://127.0.0.1/open-dashboard";
+$ROOT = "http://127.0.0.1/open-dashboard";
 $panes = array(
 				1 => array(
 					"name" => "sample",
