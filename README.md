@@ -156,7 +156,6 @@ Three runtime files are generated for each pane of Open-Dashborad, they are:
 2. dashboard_&lt;pane_name&gt;.js
 3. dashboard_&lt;pane_name&gt;.php
 All three files are generated via running PHP command-line utility: ROOT/dashboard/dashboard_create_php_js.php. All runtime files should be generated under ROOT/dashboard directory. ROOT/dashboard/dashboard_create_php_js.php takes the following arguments: $php dashboard_create_js.php 
-<br>
 Usage: dashboard_create_js.php [js|php|widgets]
 ### Generating  dashboard_&lt;pane&gt;.js files
 Run the command: $php dashboard_create_js.php js
