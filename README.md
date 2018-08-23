@@ -5,9 +5,11 @@ A PHP dashboard framework to deploy chart and grid widgets. Light-weight and ver
 <li>Font-awesome: https://fontawesome.com/
 <li>jQuery: https://jquery.com/
 <li>jQuery UI: https://jqueryui.com/
+<br>
 # Screenshots
-![Optional Text](../master/docs/image1.png)
-![Optional Text](../master/docs/image2.png)
+![image1](../master/docs/image1.png)
+![image2](../master/docs/image2.png)
+<br>
 # Configuration
 Open-Dashboard widgets are organized under different panes. Each pane has its own configuration file named: &lt;pane_name&gt;.inc. Widgets configuration in &lt;pane_name&gt;.inc is a PHP two dimentional array of widget structures. Each row maps to a row of widgets displayed by Open-Dashboard. Another configuration file: vars.inc is the master configuration file that has details on all panes. This ReadeMe refers to ROOT as the base location where Open-Dashboard is installed under web server. Master configuration file:vars.inc should reside under ROOT directory and all pane configuration files should reside under ROOT/dashboard directory.
 # Sample Master configuration file:vars.inc
