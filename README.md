@@ -102,7 +102,7 @@ The exact name of the widget. Widget of type 'chart' should have a javascript fi
 ## HEADING
 This should be set only for  widgets of type 'chart'. This value will be displayed as heading of chart widget. HEADING should be set to null for widgets of type 'grid'.
 ## REFRESH_SECS
-Seconds interval to refresh widget data. Open-Dashboard will invoke widget service after seconds configured here. A value of zero indicats data will never be auto-refreshed.
+Seconds interval to refresh widget data. Open-Dashboard will invoke widget service after seconds configured here. A value of zero indicates data will never be auto-refreshed.
 ## INPUT_FORM
 Open-Dashboard supports plug-and-play type forms that could be attached to any widget. Form takes in input for widgets,calls webservice attached to that widget,extracts JSON data from webservice and then refreshes widget with updated JSON data. Refer sample forms: region_input_form,gdp_input_form,date_input_form and date_range_input_form in ROOT/dashboard/dashboard.php file.
 
