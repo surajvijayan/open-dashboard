@@ -18,6 +18,7 @@ Here are the quick steps to get going within minutes:
 5. Start web server. Try accessing ROOT/dashboard/dashboard_sample.php from you browser
 # Demo
 Site has a few widgets configured that display data for different countries fetched from WorldBank and EU servers. The source code of widgets enabled at demo site is available under ROOT/dashboard/charts and ROOT/dashboard/grids directories.
+http://104.62.26.124/open-dashboard/
 # Configuration
 Open-Dashboard widgets are organized under different panes. Each pane has its own configuration file named: &lt;pane_name&gt;.inc. Widgets configuration in &lt;pane_name&gt;.inc is a PHP two dimentional array of widget structures. Each row maps to a row of widgets displayed by Open-Dashboard. Another configuration file: vars.inc is the master configuration file that has details on all panes. This ReadeMe refers to ROOT as the base location where Open-Dashboard is installed under web server. Master configuration file:vars.inc should reside under ROOT directory and all pane configuration files should reside under ROOT/dashboard directory.
 # Sample Master configuration file:vars.inc
