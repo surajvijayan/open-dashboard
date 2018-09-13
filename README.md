@@ -16,6 +16,9 @@ Here are the quick steps to get going within minutes:
 4. Edit open-dashboard/vars.inc file and set ROOT to point to open-dashboard directory
 5. Ensure Internet access is enabled on your web server
 5. Start web server. Try accessing ROOT/dashboard/dashboard_sample.php from you browser
+# Demo
+Site has a few widgets configured that display data for different countries fetched from WorldBank and EU servers. The source code of widgets enabled at demo site is available under ROOT/dashboard/charts and ROOT/dashboard/grids directories.
+http://104.62.26.124/open-dashboard/
 # Configuration
 Open-Dashboard widgets are organized under different panes. Each pane has its own configuration file named: &lt;pane_name&gt;.inc. Widgets configuration in &lt;pane_name&gt;.inc is a PHP two dimentional array of widget structures. Each row maps to a row of widgets displayed by Open-Dashboard. Another configuration file: vars.inc is the master configuration file that has details on all panes. This ReadeMe refers to ROOT as the base location where Open-Dashboard is installed under web server. Master configuration file:vars.inc should reside under ROOT directory and all pane configuration files should reside under ROOT/dashboard directory.
 # Sample Master configuration file:vars.inc
@@ -102,7 +105,7 @@ The exact name of the widget. Widget of type 'chart' should have a javascript fi
 ## HEADING
 This should be set only for  widgets of type 'chart'. This value will be displayed as heading of chart widget. HEADING should be set to null for widgets of type 'grid'.
 ## REFRESH_SECS
-Seconds interval to refresh widget data. Open-Dashboard will invoke widget service after seconds configured here. A value of zero indicats data will never be auto-refreshed.
+Seconds interval to refresh widget data. Open-Dashboard will invoke widget service after seconds configured here. A value of zero indicates data will never be auto-refreshed.
 ## INPUT_FORM
 Open-Dashboard supports plug-and-play type forms that could be attached to any widget. Form takes in input for widgets,calls webservice attached to that widget,extracts JSON data from webservice and then refreshes widget with updated JSON data. Refer sample forms: region_input_form,gdp_input_form,date_input_form and date_range_input_form in ROOT/dashboard/dashboard.php file.
 
