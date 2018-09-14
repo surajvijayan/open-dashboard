@@ -533,11 +533,10 @@ EOF;
                 <!-- Widget outer --> 
                 <div class=" . $widget_defs['chart'][$sze] . ">
                     <i class='ui-widget-header fa fa-chevron-circle-down fa-2x fa-pull-right' id=click_" . $widget['NAME'] . "></i>
-                    <h3>" . $widget['HEADING'] . "</h3>
-					<div id='" . $div . "_curtain' class='loading ui-dialog-buttonset ui-dialog-buttonpane ui-widget ui-widget-header ui-corner-all'>
+                    <h3 style='text-align:left;text-valign:top;display:inline-block'>" . $widget['HEADING'] . "</h3>
+                    <i  style='text-align:right;vertical-align: middle;display:inline-block' id=$page_id></i>
+					<i id='" . $div . "_curtain' class='fa loading'>
 					Loading...
-                    </div>
-                    <i class='fa fa-pull-right' id=$page_id></i>
                     <div id='" . $div . "' style='display:none;z-index:4;position:relative'>
                     </div>
                 ";
