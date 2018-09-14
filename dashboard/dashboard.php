@@ -25,9 +25,11 @@ echo <<<EOF
   <script type="text/javascript" src="$ROOT/js/jquery.redirect.js"></script>
   <script type="text/javascript" src="$ROOT/js/jquery.themes.js"></script>
   <script type="text/javascript" src="$ROOT/js/chosen.jquery.min.js"></script>
+  <script type="text/javascript" src="$ROOT/js/pagination.js"></script>
   <link rel="stylesheet" type="text/css" href="$ROOT/jquery-ui-themes-1.12.1/jquery-ui.theme.css" />
   <link rel="stylesheet" type="text/css" href="$ROOT/jquery-ui-themes-1.12.1/jquery-ui.structure.min.css" />
   <link rel="stylesheet" type="text/css" href="$ROOT/css/chosen.min.css" />
+  <link rel="stylesheet" type="text/css" href="$ROOT/css/pagination.css" />
 
   <script type="text/javascript" src="$ROOT/amcharts/amcharts.js"></script>
   <script type="text/javascript" src="$ROOT/amcharts/serial.js"></script>
@@ -445,6 +447,9 @@ function dashboard_form($widget)
 		case "DATE_RANGE":
 			date_range_input_form("form_" . $widget["NAME"],$widget["INPUT_FORM_ARGS"]);
 			break;
+        case "DATE_SITE_DEVICE":
+            date_site_device_input_form("form_" . $widget["NAME"],$widget["INPUT_FORM_ARGS"]);
+			break;
 	}
 }
 /**********************************************************************************************/
@@ -519,7 +524,8 @@ echo <<<EOF
 EOF;
         foreach ($row as $widget)
         {
-			$div = 'DIV_' . $no;
+            $div = 'DIV_' . $no;
+            $page_id = "form_" . $widget['NAME'] . "_paging";
             if($widget["TYPE"] == "chart")
             {
                 $sze = $widget["SIZE"];
@@ -530,7 +536,8 @@ EOF;
                     <h3>" . $widget['HEADING'] . "</h3>
 					<div id='" . $div . "_curtain' class='loading ui-dialog-buttonset ui-dialog-buttonpane ui-widget ui-widget-header ui-corner-all'>
 					Loading...
-					</div>
+                    </div>
+                    <i class='fa fa-pull-right' id=$page_id></i>
                     <div id='" . $div . "' style='display:none;z-index:4;position:relative'>
                     </div>
                 ";
@@ -558,4 +565,65 @@ EOF;
     }
 }
 /**********************************************************************************************/
+
+function date_site_device_input_form($form_id,$args)
+{
+    $all_sites = 0;
+    $sites = array();
+    $sites = array("FAB-1","FAB-2","FAB-3","FAB-4");
+    $days = $args[0];
+    $site = $args[1];
+    $from_date = date('Y-m-d',strtotime("-$days days"));
+    $to_date = date('Y-m-d',strtotime("now"));
+    $page_id = $form_id . "_paging";
+echo <<<EOF
+
+    <form id="$form_id" action="" method="">
+    <table border=0>
+        <tr>
+        <td>From
+            <input type="text" name="from_date" class="date_input" value="$from_date">
+        <td>To
+             <input type="text" name="to_date" class="date_input" value="$to_date">
+        </td>
+        <td>Site
+            <select style="width:273px" name="site" id="site" class="chosen-select" multiple>
+EOF;
+      foreach($sites as $msite)
+      {
+        if(($msite == "ALL" AND $all_sites == 1) OR $msite != "ALL")
+        {
+          if($msite == $site)
+              print "<option value=\"$msite\" SELECTED>$msite</option>\n";
+            else
+              print "<option value=\"$msite\">$msite</option>\n";
+        }
+      }
+echo <<<EOF
+            </select>
+        </td>
+        <td>Base Die
+        <input type="text" name="base_die" >
+        </td>
+        </tr>
+        <td>
+        Test Code
+            <select name="test_code"> 
+                <option value="FT" SELECTED>FT</option>
+                <option value="WS">WS</option>
+            </select>
+        </td>
+        <td>
+        <td>
+        Limit/Page
+        <input style="width:50px" type="number" name="limit" value="100">
+        <input type='submit' name='submit' class='button' value='Go!'/></td>
+        </td>
+      </tr>
+    </table>
+    </form>
+EOF;
+}
+/***********************************************************************************************/
+
 ?>
