@@ -525,18 +525,19 @@ EOF;
         foreach ($row as $widget)
         {
             $div = 'DIV_' . $no;
-            $page_id = "form_" . $widget['NAME'] . "_paging";
+			$page_id = "form_" . $widget["NAME"] . "_paging";
             if($widget["TYPE"] == "chart")
             {
                 $sze = $widget["SIZE"];
                 print "
                 <!-- Widget outer --> 
                 <div class=" . $widget_defs['chart'][$sze] . ">
-                    <i class='ui-widget-header fa fa-chevron-circle-down fa-2x fa-pull-right' id=click_" . $widget['NAME'] . "></i>
                     <h3 style='text-align:left;text-valign:top;display:inline-block'>" . $widget['HEADING'] . "</h3>
 					<i  style='text-align:right;vertical-align: middle;display:inline-block' id=$page_id></i>
 					<i id='" . $div . "_curtain' class='fa loading'>
 					Loading...
+					</i>
+                    <i class='ui-widget-header fa fa-chevron-circle-down fa-2x fa-pull-right' id=click_" . $widget['NAME'] . "></i>
                     <div id='" . $div . "' style='display:none;z-index:4;position:relative'>
                     </div>
                 ";
@@ -574,7 +575,6 @@ function date_site_device_input_form($form_id,$args)
     $site = $args[1];
     $from_date = date('Y-m-d',strtotime("-$days days"));
     $to_date = date('Y-m-d',strtotime("now"));
-    $page_id = $form_id . "_paging";
 echo <<<EOF
 
     <form id="$form_id" action="" method="">
