@@ -474,7 +474,7 @@ echo <<<EOF
             </ul>
 		<span id=n1 class="ui-widget-header fa fa-tachometer fa-5x fa_custom fa-pull-left"></span>
         <h4 id=date class="ui-widget-header ui-corner-all" style="text-align:right;float:right;margin:20px"></h4>
-		<h2 id='head2' class="ui-widget-header ui-corner-all fa fa-3x fa_custom fa-pull-left">Open-Dashboard:</h2>
+		<h2 class="ui-widget-content ui-corner-all fa fa-3x fa_custom fa-pull-left">Open-Dashboard</h2>
 		<h2 id='heading' class="ui-widget-header ui-corner-all fa-2x fa_custom fa-pull-left">$view</h2>
 		<div id="hoverThemes" class="theme ui-widget-content fa fa_custom fa-pull-right">Themes
             <span id=selectThemes class="fa fa_custom fa-pull-right"></span>
