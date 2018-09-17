@@ -447,9 +447,6 @@ function dashboard_form($widget)
 		case "DATE_RANGE":
 			date_range_input_form("form_" . $widget["NAME"],$widget["INPUT_FORM_ARGS"]);
 			break;
-        case "DATE_SITE_DEVICE":
-            date_site_device_input_form("form_" . $widget["NAME"],$widget["INPUT_FORM_ARGS"]);
-			break;
 	}
 }
 /**********************************************************************************************/
@@ -565,64 +562,5 @@ EOF;
     }
 }
 /**********************************************************************************************/
-
-function date_site_device_input_form($form_id,$args)
-{
-    $all_sites = 0;
-    $sites = array();
-    $sites = array("FAB-1","FAB-2","FAB-3","FAB-4");
-    $days = $args[0];
-    $site = $args[1];
-    $from_date = date('Y-m-d',strtotime("-$days days"));
-    $to_date = date('Y-m-d',strtotime("now"));
-echo <<<EOF
-
-    <form id="$form_id" action="" method="">
-    <table border=0>
-        <tr>
-        <td>From
-            <input type="text" name="from_date" class="date_input" value="$from_date">
-        <td>To
-             <input type="text" name="to_date" class="date_input" value="$to_date">
-        </td>
-        <td>Site
-            <select style="width:273px" name="site" id="site" class="chosen-select" multiple>
-EOF;
-      foreach($sites as $msite)
-      {
-        if(($msite == "ALL" AND $all_sites == 1) OR $msite != "ALL")
-        {
-          if($msite == $site)
-              print "<option value=\"$msite\" SELECTED>$msite</option>\n";
-            else
-              print "<option value=\"$msite\">$msite</option>\n";
-        }
-      }
-echo <<<EOF
-            </select>
-        </td>
-        <td>Base Die
-        <input type="text" name="base_die" >
-        </td>
-        </tr>
-        <td>
-        Test Code
-            <select name="test_code"> 
-                <option value="FT" SELECTED>FT</option>
-                <option value="WS">WS</option>
-            </select>
-        </td>
-        <td>
-        <td>
-        Limit/Page
-        <input style="width:50px" type="number" name="limit" value="100">
-        <input type='submit' name='submit' class='button' value='Go!'/></td>
-        </td>
-      </tr>
-    </table>
-    </form>
-EOF;
-}
-/***********************************************************************************************/
 
 ?>
