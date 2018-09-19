@@ -29,7 +29,7 @@ else
 
 /*********************************************************************************************/
 
-function print_top($fd)
+function print_top($fd,$count)
 {
 fputs($fd,"
 
@@ -97,7 +97,9 @@ function resize_div()
 
 function dispatch_events(ROOT)
 {
-var option;
+var w1,h1;
+var no_widgets = $count;
+var fscreen_flag = false;
 $.themes.setDefaults({themeBase: '../jquery-ui-themes-1.12.1/themes/',
                       previews: '../js/themes-preview.gif',
                       icons: '../js/themes.gif',
@@ -119,13 +121,57 @@ AmCharts.ready(function(){
 	{
 		resize_div();
 	});
+    var w = $(window).width()-55;
+    var h = $(window).height()-120;
+    var div_id = '';
+    $('.fa-expand').click(function()
+    {
+        div_id = $(this).attr('id').split('_head')[0];
+        $(this).toggleClass('fa-compress');
+        if(fscreen_flag == false) // Maximizing
+        {
+            fscreen_flag = true;
+            w1 =  $('#'+div_id).css('width');
+            h1 =  $('#'+div_id+'_outer').css('height');
+            $('#'+div_id+'_outer').animate({height:h}, 300,
+            function()
+            {
+                for(i = 1;i <= no_widgets;i++)
+                {
+                    var tdiv = '#DIV_'+i;
+                    if(tdiv != '#'+div_id)
+                        $(tdiv+'_outer').fadeOut(1600, 'linear');
+                }
+            });
+            $('#'+div_id).animate({width:w}, 300);
+            $('#'+div_id).addClass('active');
+            $('#'+div_id).css({'z-index': '9999'});
+        }
+        else
+        {
+            fscreen_flag = false;
+            div_id = $(this).attr('id').split('_head')[0];
+            $('#'+div_id+'_outer').animate({height:h1}, 300,
+            function()
+            {
+                for(i = 1;i <= no_widgets;i++)
+                {
+                    var tdiv = '#DIV_'+i;
+                    if(tdiv != '#'+div_id)
+                        $(tdiv+'_outer').fadeIn(1600, 'linear');
+                }
+            });
+            $('#'+div_id).animate({width:w1}, 300);
+            $('#'+div_id).addClass('active');
+            $('#'+div_id).css({'z-index': '9999'});
+        }
+    });
     get_theme_cookie();
     $('#selectThemes').themes({themes: ['darkhive','cupertino','smoothness','dotluv']});
     $('#scroll').css({'z-index':'1','position':'absolute'});
     $( '#list1 li').click(function()
     {
         $('#list1').option = $(this).text();
-        $('h2#heading').text(option);
     });
     $('.date_input').datepicker({dateFormat: 'yy-mm-dd'}).attr('readonly', 'true');
 	$('.chosen-select').chosen({max_selected_options:7}).change();
@@ -164,7 +210,8 @@ function create_js($pane_name)
 		print "Plane:$pane_name is not defined in in vars.inc file!\n";
 		exit(0);
 	}
-	print_top($fd);
+	$count = array_sum(array_map("count", $widgets_array));
+	print_top($fd,$count);
 	fputs($fd,"\t" . '$("h4#date").text("Last Updated: "+Date());' . "\n");
 	$no = 1;
 	foreach ($widgets_array as $row)

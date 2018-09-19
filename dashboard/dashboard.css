@@ -223,3 +223,13 @@ td {
   border: none;
   background: transparent;
 }
+
+i.expand {
+  cursor: pointer;
+}
+
+.expand.active {
+  margin-top: 0;
+  top: 0 !important;
+}
+

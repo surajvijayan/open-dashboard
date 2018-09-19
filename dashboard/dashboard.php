@@ -528,13 +528,14 @@ EOF;
                 $sze = $widget["SIZE"];
                 print "
                 <!-- Widget outer --> 
-                <div class=" . $widget_defs['chart'][$sze] . ">
+                <div id=" . $div . "_outer class=" . $widget_defs['chart'][$sze] . ">
                     <h3 style='text-align:left;text-valign:top;display:inline-block'>" . $widget['HEADING'] . "</h3>
 					<i  style='text-align:right;vertical-align: middle;display:inline-block' id=$page_id></i>
 					<i id='" . $div . "_curtain' class='fa loading'>
 					Loading...
 					</i>
-                    <i class='ui-widget-header fa fa-chevron-circle-down fa-2x fa-pull-right' id=click_" . $widget['NAME'] . "></i>
+					<i id=" . $div . "_head  class='expand fa fa-expand fa-pull-right'></i>
+                    <i class='expand ui-widget-header fa fa-chevron-circle-down fa-2x fa-pull-right' id=click_" . $widget['NAME'] . "></i>
                     <div id='" . $div . "' style='display:none;z-index:4;position:relative'>
                     </div>
                 ";
@@ -544,7 +545,8 @@ EOF;
             {
             print "
                 <!-- Widget outer --> 
-                <div class=" . $widget_defs['grid'][$widget['SIZE']] . ">
+                <div id=" . $div . "_outer class=" . $widget_defs['grid'][$widget['SIZE']] . ">
+					<i id=" . $div . "_head  class='expand fa fa-expand fa-pull-right'></i>
                     <table style='float: left;height:auto;' id='" . $div . "'></table>
                 ";
                 dashboard_form($widget);
