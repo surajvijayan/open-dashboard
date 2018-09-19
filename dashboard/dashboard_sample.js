@@ -110,7 +110,10 @@ AmCharts.ready(function(){
                         $(tdiv+'_outer').fadeOut(1600, 'linear');
                 }
             });
-            $('#'+div_id).animate({width:w}, 300);
+            if(div_id == 'DIV_4')
+                $('table.'+div_id).attr('width', w);
+            else        
+                $('#'+div_id).animate({width:w}, 300);
             $('#'+div_id).addClass('active');
             $('#'+div_id).css({'z-index': '9999'});
         }
