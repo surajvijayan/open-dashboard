@@ -66,6 +66,14 @@ function dispatch_events(ROOT)
 {
 var w1,h1;
 var no_widgets = 4;
+
+var widgets_array = [
+	{no:"0",div:"DIV_0",name:"get_country_fact_sheets",type:"chart"},
+	{no:"1",div:"DIV_1",name:"country_area",type:"chart"},
+	{no:"2",div:"DIV_2",name:"country_gdp",type:"chart"},
+	{no:"3",div:"DIV_3",name:"countries_data",type:"grid"}
+];
+
 var fscreen_flag = false;
 $.themes.setDefaults({themeBase: '../jquery-ui-themes-1.12.1/themes/',
                       previews: '../js/themes-preview.gif',
@@ -110,7 +118,11 @@ AmCharts.ready(function(){
                         $(tdiv+'_outer').fadeOut(1600, 'linear');
                 }
             });
-            $('#'+div_id).animate({width:w}, 300);
+			id = div_id.split('DIV_')[1];
+            if(widgets_array[id].type == 'chart')
+                $('#'+div_id).animate({width:w}, 300);
+            else
+                $('table.'+div_id).attr('width', w);
             $('#'+div_id).addClass('active');
             $('#'+div_id).css({'z-index': '9999'});
         }
