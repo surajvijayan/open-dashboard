@@ -29,7 +29,7 @@ else
 
 /*********************************************************************************************/
 
-function print_top($fd,$count)
+function print_top($fd,$count,$widgets_array)
 {
 fputs($fd,"
 
@@ -99,6 +99,9 @@ function dispatch_events(ROOT)
 {
 var w1,h1;
 var no_widgets = $count;
+");
+create_js_config($fd,$widgets_array);
+fputs($fd,"
 var fscreen_flag = false;
 $.themes.setDefaults({themeBase: '../jquery-ui-themes-1.12.1/themes/',
                       previews: '../js/themes-preview.gif',
@@ -143,7 +146,11 @@ AmCharts.ready(function(){
                         $(tdiv+'_outer').fadeOut(1600, 'linear');
                 }
             });
-            $('#'+div_id).animate({width:w}, 300);
+			id = div_id.split('DIV_')[1];
+            if(widgets_array[id].type == 'chart')
+                $('#'+div_id).animate({width:w}, 300);
+            else
+                $('table.'+div_id).attr('width', w);
             $('#'+div_id).addClass('active');
             $('#'+div_id).css({'z-index': '9999'});
         }
@@ -211,7 +218,7 @@ function create_js($pane_name)
 		exit(0);
 	}
 	$count = array_sum(array_map("count", $widgets_array));
-	print_top($fd,$count);
+	print_top($fd,$count,$widgets_array);
 	fputs($fd,"\t" . '$("h4#date").text("Last Updated: "+Date());' . "\n");
 	$no = 1;
 	foreach ($widgets_array as $row)
@@ -274,6 +281,30 @@ function create_js($pane_name)
 	fclose($fd);
 }
 /*****************************************************************************************/
+
+function create_js_config($fd,$widgets_array)
+{
+    $no = 0;
+    fprintf($fd, "\nvar widgets_array = [\n");
+    $first = true;
+    foreach ($widgets_array as $row)
+    {
+        foreach ($row as $widget)
+        {
+            if($first == true)
+                $first = false;
+            else
+                fprintf($fd,",\n");
+            fprintf($fd,"\t" . '{no:"' . $div = $no . '",'.
+            'div:"' . $div = 'DIV_' . $no . '",'.
+            'name:"' . $widget['NAME'] . '",'.
+            'type:"' . $widget['TYPE'] . '"}');
+            $no++;
+        }
+    }
+    fputs($fd,"\n];\n");
+}
+/*********************************************************************************************/
 
 function create_php($pane_name)
 {
