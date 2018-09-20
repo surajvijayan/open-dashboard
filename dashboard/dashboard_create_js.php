@@ -147,7 +147,7 @@ AmCharts.ready(function(){
                 }
             });
 			id = div_id.split('DIV_')[1];
-            if(widgets_array[id].type == 'chart')
+            if(widgets_array[id-1].type == 'chart')
                 $('#'+div_id).animate({width:w}, 300);
             else
                 $('table.'+div_id).attr('width', w);
