@@ -62,6 +62,19 @@ function resize_div()
 }
 /***************************************************************************************************/
 
+function serialize_forms(widgets_array,no_widgets)
+{
+var i;
+    for(i = 0;i <= no_widgets;i++)
+    {
+        form_id = '#form_' + widgets_array[i].name; 
+        var args = $(form_id).serializeArray();
+        console.log('FORM:'+form_id)
+        console.log(JSON.stringify(args));
+    }
+}
+/***************************************************************************************************/
+
 function dispatch_events(ROOT)
 {
 var w1,h1;
@@ -151,6 +164,8 @@ AmCharts.ready(function(){
     $( '#list1 li').click(function()
     {
         $('#list1').option = $(this).text();
+    alert('Doing Serialize!');
+    serialize_forms(widgets_array,no_widgets);
     });
     $('.date_input').datepicker({dateFormat: 'yy-mm-dd'}).attr('readonly', 'true');
 	$('.chosen-select').chosen({max_selected_options:7}).change();
