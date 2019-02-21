@@ -90,7 +90,7 @@ function resize_div()
 {
 	vpw = $(window).width();
 	vph = $(window).height();
-	vph = vph - 100;
+	vph = vph - 125;
 	$('#scroll').css({'height': vph + 'px'});
 }
 /***************************************************************************************************/

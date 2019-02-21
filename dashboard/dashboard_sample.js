@@ -65,13 +65,25 @@ function resize_div()
 function serialize_forms(widgets_array,no_widgets)
 {
 var i;
-    for(i = 0;i <= no_widgets;i++)
+/*
+    for(i = 0;i < no_widgets;i++)
     {
         form_id = '#form_' + widgets_array[i].name; 
         var args = $(form_id).serializeArray();
-        console.log('FORM:'+form_id)
+        console.log('ID:'+i+' FORM:'+form_id)
         console.log(JSON.stringify(args));
     }
+*/
+	$('form').each
+	(
+   		function(index)
+		{  
+        	form_id = '#' + this.id; 
+        	var args = $(form_id).serializeArray();
+        	console.log('ID:'+index+' FORM:'+form_id)
+        	console.log(JSON.stringify(args));
+    	}
+	);
 }
 /***************************************************************************************************/
 
