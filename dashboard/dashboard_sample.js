@@ -64,7 +64,7 @@ function resize_div()
 
 function serialize_forms(widgets_array,no_widgets)
 {
-var i;
+var i,args,fields;
 /*
     for(i = 0;i < no_widgets;i++)
     {
@@ -79,9 +79,15 @@ var i;
    		function(index)
 		{  
         	form_id = '#' + this.id; 
-        	var args = $(form_id).serializeArray();
-        	console.log('ID:'+index+' FORM:'+form_id)
+        	args = $(form_id).serializeArray();
+        	//console.log('ID:'+index+' FORM:'+form_id)
+            //store this JSON array of objects in DB
         	console.log(JSON.stringify(args));
+        $.each(args, function(i,field) 
+        {
+            console.log("FORM_NAME:" +form_id + " " + field.name + ":" + field.value);
+        });
+        console.log('NEW LINE\n');
     	}
 	);
 }
@@ -176,8 +182,8 @@ AmCharts.ready(function(){
     $( '#list1 li').click(function()
     {
         $('#list1').option = $(this).text();
-    alert('Doing Serialize!');
-    serialize_forms(widgets_array,no_widgets);
+        alert('Doing Serialize!');
+        serialize_forms(widgets_array,no_widgets);
     });
     $('.date_input').datepicker({dateFormat: 'yy-mm-dd'}).attr('readonly', 'true');
 	$('.chosen-select').chosen({max_selected_options:7}).change();

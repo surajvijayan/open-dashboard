@@ -121,7 +121,26 @@ EOF;
 
 function gdp_input_form($form_id,$args)
 {
-    $country = $args[0];
+    $year = "2017";
+    $c2 = array();
+    $c3 = array();
+    //This should be retrieved from DB/external storage for every unique logged in user to restore saved Form values
+    $form_values = '[
+                     {"name":"country","value":"CAN"},{"name":"country","value":"CHN"},
+                     {"name":"country","value":"DEU"},{"name":"country","value":"GBR"},
+                     {"name":"country","value":"IND"},{"name":"country","value":"JPN"},
+                     {"name":"country","value":"USA"},{"name":"fyear","value":"2010"}
+                    ]';
+    $c2 = json_decode($form_values,true);
+    foreach($c2 as $key => $value) 
+    {
+        if($value["name"] == "country")
+            array_push($c3,$value["value"]);
+        if($value["name"] == "fyear")
+            $year = $value["value"]; 
+    }
+    if(!empty($c3))
+        $args = $c3;
     $countries = array(
 	"ABW" => "Aruba",
 	"AFG" => "Afghanistan",
@@ -404,7 +423,7 @@ echo <<<EOF
      		<option value="2014">2014</option>
      		<option value="2015">2015</option>
      		<option value="2016">2016</option>
-     		<option value="2017" SELECTED>2017</option>
+     		<option value="2017" SELECTED>$year</option>
 			</select>
       <input type='submit' name='submit' class='button' value='Go!'/>
     </form>

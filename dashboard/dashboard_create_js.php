@@ -9,7 +9,7 @@ if ($argc == 2)
 		{
 			switch ($argv[1])
 			{
-            case "js":
+                case "js":
                     create_js($pane["name"]);
 					break;
 				case "php":
