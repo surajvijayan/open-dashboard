@@ -87,7 +87,6 @@ var i,args,fields;
         {
             console.log("FORM_NAME:" +form_id + " " + field.name + ":" + field.value);
         });
-        console.log('NEW LINE\n');
     	}
 	);
 }
