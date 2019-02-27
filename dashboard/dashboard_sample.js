@@ -83,10 +83,10 @@ var i,args,fields;
         	//console.log('ID:'+index+' FORM:'+form_id)
             //store this JSON array of objects in DB
         	console.log(JSON.stringify(args));
-        $.each(args, function(i,field) 
-        {
-            console.log("FORM_NAME:" +form_id + " " + field.name + ":" + field.value);
-        });
+			$.each(args, function(i,field) 
+			{
+				console.log("FORM_NAME:" +form_id + " " + field.name + ":" + field.value);
+			});
     	}
 	);
 }

@@ -233,3 +233,10 @@ i.expand {
   top: 0 !important;
 }
 
+.save-session {
+    font-weight: bold;
+	float:right;
+	margin-top:0px;
+	background: none !important;
+	border: none !important;
+}
