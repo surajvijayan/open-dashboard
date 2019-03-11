@@ -13,5 +13,5 @@ print_header('dashboard_sample.js','sample_widgets.js');
 // Dashboard Menu stuff..
 dashboard_header($ROOT,'Sample Widgets');
 show_widgets($widgets_array);
-dashboard_footer($ROOT);
+dashboard_footer($ROOT,'sample');
 ?>

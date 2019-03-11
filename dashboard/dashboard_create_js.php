@@ -95,7 +95,36 @@ function resize_div()
 }
 /***************************************************************************************************/
 
-function dispatch_events(ROOT)
+function serialize_forms(widgets_array,no_widgets,pane_name)
+{
+var i,args,fields;
+/*
+    for(i = 0;i < no_widgets;i++)
+    {
+        form_id = '#form_' + widgets_array[i].name; 
+        var args = $(form_id).serializeArray();
+        console.log('ID:'+i+' FORM:'+form_id)
+        console.log(JSON.stringify(args));
+    }
+*/
+    $('form').each
+    (
+        function(index)
+        { 
+            form_id = '#' + this.id;
+            args = $(form_id).serializeArray();
+            //store this JSON array of objects in DB
+            console.log(JSON.stringify(args));
+            $.each(args, function(i,field)
+            {
+                console.log('FORM_NAME:' +form_id + ' ' + field.name + ':' + field.value);
+            });
+        }
+    );
+}
+/***************************************************************************************************/
+
+function dispatch_events(ROOT,pane_name)
 {
 var w1,h1;
 var no_widgets = $count;
@@ -103,9 +132,9 @@ var no_widgets = $count;
 create_js_config($fd,$widgets_array);
 fputs($fd,"
 var fscreen_flag = false;
-$.themes.setDefaults({themeBase: '../jquery-ui-themes-1.12.1/themes/',
-                      previews: '../js/themes-preview.gif',
-                      icons: '../js/themes.gif',
+$.themes.setDefaults({themeBase: '../static_files/jquery-ui-themes-1.12.1/themes/',
+                      previews: '../static_files/js/themes-preview.gif',
+                      icons: '../static_files/js/themes.gif',
                       cookieExpiry: 7,
                       themeFile: 'jquery-ui.min.css',
                       showPreview: false,
@@ -182,6 +211,11 @@ AmCharts.ready(function(){
     });
     $('.date_input').datepicker({dateFormat: 'yy-mm-dd'}).attr('readonly', 'true');
 	$('.chosen-select').chosen({max_selected_options:7}).change();
+    $( '#save-session').click(function()
+    {
+        serialize_forms(widgets_array,no_widgets,pane_name);
+    });
+
 ");
 }
 /*****************************************************************************************/
@@ -189,7 +223,7 @@ AmCharts.ready(function(){
 function create_js($pane_name)
 {
 	global $panes;
-	$js_file = "dashboard_" . $pane_name . ".js";
+	$js_file = "../static_files/dashboard/dashboard_" . $pane_name . ".js";
 	$fd = fopen($js_file,"w");
 
 	$found = FALSE;
@@ -363,7 +397,7 @@ print_header('$js_file','$widgets_file');
 // Dashboard Menu stuff..
 dashboard_header(\$ROOT,'$header');
 show_widgets(\$widgets_array);
-dashboard_footer(\$ROOT);
+dashboard_footer(\$ROOT,'$pane_name');
 ?>
 ");
 }
@@ -407,7 +441,7 @@ function create_widgets($pane_name)
         exit(0);
     }
     include_once($inc_file);
-    $widgets_file = $pane_name . "_widgets.js";
+    $widgets_file = '../static_files/dashboard/' . $pane_name . "_widgets.js";
     $fd = fopen($widgets_file,"w");
     fputs($fd,"
 /* Suraj Vijayan

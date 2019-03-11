@@ -19,36 +19,36 @@ echo <<<EOF
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <title>Open-Dashboard</title>
   <!-- prerequisites -->
-  <link rel="stylesheet" type="text/css" href="$ROOT/css/jquery.themes.css"> 
-  <script type="text/javascript" src="$ROOT/jquery-3.3.1.min.js"></script>
-  <script type="text/javascript" src="$ROOT/jquery-ui-1.12.1/jquery-ui.min.js"></script> 
-  <script type="text/javascript" src="$ROOT/js/jquery.redirect.js"></script>
-  <script type="text/javascript" src="$ROOT/js/jquery.themes.js"></script>
-  <script type="text/javascript" src="$ROOT/js/chosen.jquery.min.js"></script>
-  <script type="text/javascript" src="$ROOT/js/pagination.js"></script>
-  <link rel="stylesheet" type="text/css" href="$ROOT/jquery-ui-themes-1.12.1/jquery-ui.theme.css" />
-  <link rel="stylesheet" type="text/css" href="$ROOT/jquery-ui-themes-1.12.1/jquery-ui.structure.min.css" />
-  <link rel="stylesheet" type="text/css" href="$ROOT/css/chosen.min.css" />
-  <link rel="stylesheet" type="text/css" href="$ROOT/css/pagination.css" />
+  <link rel="stylesheet" type="text/css" href="$ROOT/static_files/css/jquery.themes.css"> 
+  <script type="text/javascript" src="$ROOT/static_files/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="$ROOT/static_files/jquery-ui-1.12.1/jquery-ui.min.js"></script> 
+  <script type="text/javascript" src="$ROOT/static_files/js/jquery.redirect.js"></script>
+  <script type="text/javascript" src="$ROOT/static_files/js/jquery.themes.js"></script>
+  <script type="text/javascript" src="$ROOT/static_files/js/chosen.jquery.min.js"></script>
+  <script type="text/javascript" src="$ROOT/static_files/js/pagination.js"></script>
+  <link rel="stylesheet" type="text/css" href="$ROOT/static_files/jquery-ui-themes-1.12.1/jquery-ui.theme.css" />
+  <link rel="stylesheet" type="text/css" href="$ROOT/static_files/jquery-ui-themes-1.12.1/jquery-ui.structure.min.css" />
+  <link rel="stylesheet" type="text/css" href="$ROOT/static_files/css/chosen.min.css" />
+  <link rel="stylesheet" type="text/css" href="$ROOT/static_files/css/pagination.css" />
 
-  <script type="text/javascript" src="$ROOT/amcharts/amcharts.js"></script>
-  <script type="text/javascript" src="$ROOT/amcharts/serial.js"></script>
-  <script type="text/javascript" src="$ROOT/amcharts/pie.js"></script>
-  <script src="$ROOT/amcharts/plugins/export/export.js" type="text/javascript"></script>
-  <link  type="text/css" href="$ROOT/amcharts/plugins/export/export.css" rel="stylesheet">
-  <script src="$ROOT/amcharts/themes/light.js"></script>
-  <script src="$ROOT/amcharts/themes/dark.js"></script>
-  <script src="$ROOT/amcharts/themes/patterns.js"></script>
-  <script src="$ROOT/amcharts/themes/black.js"></script>
-  <script src="$ROOT/amcharts/themes/chalk.js"></script>
-  <script type="text/javascript" src="$ROOT/dashboard/$widgets_js"></script>
-  <script type="text/javascript" src="$ROOT/dashboard/$dashboard_js"></script>
-  <link rel="stylesheet" href="$ROOT/font-awesome-4.7.0/css/font-awesome.min.css">
-  <script src="$ROOT/jqGrid/jquery.jqgrid.min.js"> type="text/javascript"></script>
-  <link rel="stylesheet" type="text/css" href="$ROOT/css/menu.css" />
-  <link href="$ROOT/css/amcharts.css" type="text/css" rel="stylesheet"/>
-  <link rel="stylesheet" href="$ROOT/jqGrid/css/ui.jqgrid.css">
-  <link href="$ROOT/dashboard/dashboard.css" type="text/css" rel="stylesheet"/>
+  <script type="text/javascript" src="$ROOT/static_files/amcharts/amcharts.js"></script>
+  <script type="text/javascript" src="$ROOT/static_files/amcharts/serial.js"></script>
+  <script type="text/javascript" src="$ROOT/static_files/amcharts/pie.js"></script>
+  <script src="$ROOT/static_files/amcharts/plugins/export/export.js" type="text/javascript"></script>
+  <link  type="text/css" href="$ROOT/static_files/amcharts/plugins/export/export.css" rel="stylesheet">
+  <script src="$ROOT/static_files/amcharts/themes/light.js"></script>
+  <script src="$ROOT/static_files/amcharts/themes/dark.js"></script>
+  <script src="$ROOT/static_files/amcharts/themes/patterns.js"></script>
+  <script src="$ROOT/static_files/amcharts/themes/black.js"></script>
+  <script src="$ROOT/static_files/amcharts/themes/chalk.js"></script>
+  <script type="text/javascript" src="$ROOT/static_files/dashboard/$widgets_js"></script>
+  <script type="text/javascript" src="$ROOT/static_files/dashboard/$dashboard_js"></script>
+  <link rel="stylesheet" href="$ROOT/static_files/font-awesome-4.7.0/css/font-awesome.min.css">
+  <script src="$ROOT/static_files/jqGrid/jquery.jqgrid.min.js"> type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="$ROOT/static_files/css/menu.css" />
+  <link href="$ROOT/static_files/css/amcharts.css" type="text/css" rel="stylesheet"/>
+  <link rel="stylesheet" href="$ROOT/static_files/jqGrid/css/ui.jqgrid.css">
+  <link href="$ROOT/static_files/dashboard/dashboard.css" type="text/css" rel="stylesheet"/>
 </head>
 EOF;
   return;
@@ -505,7 +505,7 @@ EOF;
 }
 /**********************************************************************************************/
 
-function dashboard_footer($ROOT)
+function dashboard_footer($ROOT,$pane_name)
 {
 echo <<<EOF
     <!-- MAIN DIV -->
@@ -513,7 +513,7 @@ echo <<<EOF
 <!-- scroll DIV -->
 </div>
     <script type="text/javascript">
-        dispatch_events('$ROOT');
+        dispatch_events('$ROOT','$pane_name');
     </script>
 </body>
 </html>
