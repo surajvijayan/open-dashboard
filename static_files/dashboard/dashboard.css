@@ -1,0 +1,242 @@
+.small_div_class {
+    width : 500px;
+    height : 80%;
+    font-size : 11px;
+}
+
+.med_div_class {
+    width : 600px;
+    height : 85%;
+    font-size : 11px;
+	overflow: visible;
+
+}
+
+.big_div_class {
+    width : 700px;
+    height : 85%;
+    font-size : 11px;
+}
+
+.div_align 
+{
+    text-align: left;
+	vertical-align: top;
+}
+
+.small_grid_outer {
+    width : auto;
+    height : auto;
+    padding: 5px;
+    border:1px solid #f2f2f2;
+}
+
+.med_grid_outer {
+    width : auto;
+    height : auto;
+    padding: 0px;
+    border:1px solid #f2f2f2;
+}
+
+.big_grid_outer {
+    width : auto;
+    height : auto; 
+    padding: 5px;
+    border:1px solid #f2f2f2;
+}
+#legenddiv {
+    width : auto;
+    font-size : 11px;
+}
+
+.widget_outer {
+    width : 400px;
+    font-size : 11px;
+    border:1px solid #f2f2f2;
+    padding: 5px;
+}
+
+.small_chart_outer {
+    width : auto;
+    height : 600px;
+    font-size : 11px;
+    padding: .5em;
+    border:1px solid #f2f2f2;
+	background:transparent;
+}
+.med_chart_outer {
+    width : auto;
+    height : 790px;
+    font-size : 11px;
+    padding: .5em;
+    border:1px solid #f2f2f2;
+	background:transparent;
+
+}
+.big_chart_outer {
+    width : auto;
+    height : 830px;
+    font-size : 11px;
+    padding: .5em;
+    border:1px solid #f2f2f2;
+	background:transparent;
+
+}
+
+#data, #data th, #data td {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+#data th {
+    font-weight: bold;
+}
+h1 {
+  font-weight: bold;
+}
+span
+{
+  display: inline-block;
+  vertical-align: top;
+}
+.widget_contr
+{
+  display: flex;
+}
+.widget_contr > div {
+  flex: 1; /*grow*/
+}
+#header { 
+	width:100%;
+	height:75px;
+	margin-left:1px;
+	margin-right:1px;
+	#background: url(images/zig_zag_wool.png) #262626; 
+	text-align: center;
+	border-top:1px solid #808080;
+}
+#scroll {
+	overflow-x: auto; 
+	height: 950px; 
+	width: 99%; 
+	margin:1px;
+	z-index: 1;
+	background-size: cover;
+}
+
+.fa_custom {
+color: 	#c1c1d7;
+}
+
+h2 {
+	text-align:left;
+	float:left;
+	margin:5px;
+	margin-top:8px;
+	margin-top:1px;
+}
+h4 {
+	text-align:right;
+	float:right;
+	margin-right: 20px;
+}
+
+.loading {
+    width:70px;
+    font-size: 11px;
+    display: inline-block;
+    font-weight:bold;
+}
+.myAltRowClass 
+{ 
+	background-color: #424c4c;
+	background-image: none; 
+}
+.date_input { font-size: 12px;width:90px }
+.error   
+{ 
+	font-weight:bold;
+	text-align:left;
+}
+i.fa{
+  font:normal normal normal 14px/1 FontAwesome;
+}
+.baloontext
+{
+	font-size: 11px; 
+}
+td {
+	font-size: 12px;
+}
+.theme {
+	width:200px;
+	text-decoration-line: underline;
+    font-weight: bold;
+	float:right;
+	margin-top:0px;
+}
+#date.ui-widget-header {
+  border: none;
+  background: transparent;
+}
+#heading.ui-widget-header {
+  border: none;
+  background: transparent;
+  margin-top: 10px;
+}
+#head2.ui-widget-header {
+  border: none;
+  background: transparent;
+}
+
+#body1.ui-widget-content {
+  border: none;
+  background-size: cover;
+}
+#html1.ui-widget-content {
+  border: none;
+  background-size: cover;
+}
+#hoverThemes.ui-widget-content {
+  border: none;
+  background: transparent;
+}
+#t1.ui-widget-header {
+  border: none;
+  background: transparent;
+}
+#n1.ui-widget-header {
+  border: none;
+  background: transparent;
+}
+
+.small_chart_outer > .ui-widget-header {
+  border: none;
+  background: transparent;
+}
+
+.med_chart_outer > .ui-widget-header {
+  border: none;
+  background: transparent;
+}
+
+.big_chart_outer > .ui-widget-header {
+  border: none;
+  background: transparent;
+}
+
+i.expand {
+  cursor: pointer;
+}
+
+.expand.active {
+  margin-top: 0;
+  top: 0 !important;
+}
+
+.save-session {
+    font-weight: bold;
+	float:right;
+	margin-top:0px;
+	background: none !important;
+	border: none !important;
+}
