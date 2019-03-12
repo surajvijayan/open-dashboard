@@ -13,7 +13,7 @@ function include(file)
     script.defer = true;
     document.getElementsByTagName('head').item(0).appendChild(script);
 }
-include('/open-dashboard/static_files/dashboard/charts/get_country_fact_sheets.js');
-include('/open-dashboard/static_files/dashboard/charts/country_area.js');
-include('/open-dashboard/static_files/dashboard/charts/country_gdp.js');
-include('/open-dashboard/static_files/dashboard/grids/countries_data.js');
+include('static_files/dashboard/charts/get_country_fact_sheets.js');
+include('static_files/dashboard/charts/country_area.js');
+include('static_files/dashboard/charts/country_gdp.js');
+include('static_files/dashboard/grids/countries_data.js');
