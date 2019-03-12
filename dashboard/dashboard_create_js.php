@@ -467,9 +467,9 @@ function include(file)
 		foreach ($row as $widget)
 		{
 			if($widget['TYPE'] == 'chart')
-				$dir = 'charts';
+				$dir = '/open-dashboard/static_files/dashboard/charts';
 			else
-				$dir = 'grids';
+				$dir = '/open-dashboard/static_files/dashboard/grids';
 			fputs($fd,"include('" . "$dir" . "/" . $widget["NAME"] . ".js" ."');\n");
 		}
 	}
