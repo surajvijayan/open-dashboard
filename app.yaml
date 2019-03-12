@@ -1,0 +1,8 @@
+runtime: php72
+# the default is to serve your app using `public/index.php` or `index.php`
+# entrypoint: serve index.php
+
+handlers:
+# Serve a directory as a static resource.
+- url: /static_files
+  static_dir: static_files
