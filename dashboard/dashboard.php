@@ -26,6 +26,7 @@ echo <<<EOF
   <script type="text/javascript" src="$ROOT/static_files/js/jquery.themes.js"></script>
   <script type="text/javascript" src="$ROOT/static_files/js/chosen.jquery.min.js"></script>
   <script type="text/javascript" src="$ROOT/static_files/js/pagination.js"></script>
+  <script type="text/javascript" src="$ROOT/static_files/js/noty.min.js"></script>
   <link rel="stylesheet" type="text/css" href="$ROOT/static_files/jquery-ui-themes-1.12.1/jquery-ui.theme.css" />
   <link rel="stylesheet" type="text/css" href="$ROOT/static_files/jquery-ui-themes-1.12.1/jquery-ui.structure.min.css" />
   <link rel="stylesheet" type="text/css" href="$ROOT/static_files/css/chosen.min.css" />
@@ -48,6 +49,7 @@ echo <<<EOF
   <link rel="stylesheet" type="text/css" href="$ROOT/static_files/css/menu.css" />
   <link href="$ROOT/static_files/css/amcharts.css" type="text/css" rel="stylesheet"/>
   <link rel="stylesheet" href="$ROOT/static_files/jqGrid/css/ui.jqgrid.css">
+  <link rel="stylesheet" type="text/css" href="$ROOT/static_files/css/noty.css" />
   <link href="$ROOT/static_files/dashboard/dashboard.css" type="text/css" rel="stylesheet"/>
 </head>
 EOF;
