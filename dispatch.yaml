@@ -1,7 +1,0 @@
-dispatch:
-  - url: "sispara-analytics.com/*"
-    service: default
-  - url: "customer1.sispara-analytics.com/*"
-    service: customer1
-  - url: "customer2.sispara-analytics.com/*"
-    service: customer2

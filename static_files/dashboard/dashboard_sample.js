@@ -88,6 +88,7 @@ var i,args,fields;
             });
         }
     );
+    new Noty({text: 'Saved user session for user: DUMMY Pane:' + pane_name + '.',timeout:1000,type:'success'}).show();
 }
 /***************************************************************************************************/
 
