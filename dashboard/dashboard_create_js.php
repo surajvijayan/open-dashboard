@@ -121,6 +121,7 @@ var i,args,fields;
             });
         }
     );
+    new Noty({text: 'Saved user session for user: DUMMY Pane:' + pane_name + '.',timeout:1000,type:'success'}).show();
 }
 /***************************************************************************************************/
 
@@ -467,9 +468,9 @@ function include(file)
 		foreach ($row as $widget)
 		{
 			if($widget['TYPE'] == 'chart')
-				$dir = 'static_files/dashboard/charts';
+				$dir = '../static_files/dashboard/charts';
 			else
-				$dir = 'static_files/dashboard/grids';
+				$dir = '../static_files/dashboard/grids';
 			fputs($fd,"include('" . "$dir" . "/" . $widget["NAME"] . ".js" ."');\n");
 		}
 	}

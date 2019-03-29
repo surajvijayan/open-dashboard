@@ -19,7 +19,7 @@ echo <<<EOF
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <title>Open-Dashboard</title>
   <!-- prerequisites -->
-  <link rel="stylesheet" type="text/css" href="$ROOT/static_files/css/jquery.themes.css"> 
+  <link  rel="stylesheet" type="text/css" href="$ROOT/static_files/css/jquery.themes.css"> 
   <script type="text/javascript" src="$ROOT/static_files/jquery-3.3.1.min.js"></script>
   <script type="text/javascript" src="$ROOT/static_files/jquery-ui-1.12.1/jquery-ui.min.js"></script> 
   <script type="text/javascript" src="$ROOT/static_files/js/jquery.redirect.js"></script>
@@ -27,16 +27,17 @@ echo <<<EOF
   <script type="text/javascript" src="$ROOT/static_files/js/chosen.jquery.min.js"></script>
   <script type="text/javascript" src="$ROOT/static_files/js/pagination.js"></script>
   <script type="text/javascript" src="$ROOT/static_files/js/noty.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="$ROOT/static_files/jquery-ui-themes-1.12.1/jquery-ui.theme.css" />
-  <link rel="stylesheet" type="text/css" href="$ROOT/static_files/jquery-ui-themes-1.12.1/jquery-ui.structure.min.css" />
-  <link rel="stylesheet" type="text/css" href="$ROOT/static_files/css/chosen.min.css" />
-  <link rel="stylesheet" type="text/css" href="$ROOT/static_files/css/pagination.css" />
+  <link  rel="stylesheet" type="text/css" href="$ROOT/static_files/jquery-ui-themes-1.12.1/jquery-ui.theme.css" />
+  <link  rel="stylesheet" type="text/css" href="$ROOT/static_files/jquery-ui-themes-1.12.1/jquery-ui.structure.min.css" />
+  <link  rel="stylesheet" type="text/css" href="$ROOT/static_files/css/chosen.min.css" />
+  <link  rel="stylesheet" type="text/css" href="$ROOT/static_files/css/pagination.css" />
+  <link  rel="stylesheet" type="text/css" href="$ROOT/static_files/css/noty.css" />
 
   <script type="text/javascript" src="$ROOT/static_files/amcharts/amcharts.js"></script>
   <script type="text/javascript" src="$ROOT/static_files/amcharts/serial.js"></script>
   <script type="text/javascript" src="$ROOT/static_files/amcharts/pie.js"></script>
   <script src="$ROOT/static_files/amcharts/plugins/export/export.js" type="text/javascript"></script>
-  <link  type="text/css" href="$ROOT/static_files/amcharts/plugins/export/export.css" rel="stylesheet">
+  <link  rel="stylesheet" type="text/css" href="$ROOT/static_files/amcharts/plugins/export/export.css" >
   <script src="$ROOT/static_files/amcharts/themes/light.js"></script>
   <script src="$ROOT/static_files/amcharts/themes/dark.js"></script>
   <script src="$ROOT/static_files/amcharts/themes/patterns.js"></script>
@@ -44,15 +45,16 @@ echo <<<EOF
   <script src="$ROOT/static_files/amcharts/themes/chalk.js"></script>
   <script type="text/javascript" src="$ROOT/static_files/dashboard/$widgets_js"></script>
   <script type="text/javascript" src="$ROOT/static_files/dashboard/$dashboard_js"></script>
-  <link rel="stylesheet" href="$ROOT/static_files/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link  href="$ROOT/static_files/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <script src="$ROOT/static_files/jqGrid/jquery.jqgrid.min.js"> type="text/javascript"></script>
-  <link rel="stylesheet" type="text/css" href="$ROOT/static_files/css/menu.css" />
-  <link href="$ROOT/static_files/css/amcharts.css" type="text/css" rel="stylesheet"/>
-  <link rel="stylesheet" href="$ROOT/static_files/jqGrid/css/ui.jqgrid.css">
-  <link rel="stylesheet" type="text/css" href="$ROOT/static_files/css/noty.css" />
-  <link href="$ROOT/static_files/dashboard/dashboard.css" type="text/css" rel="stylesheet"/>
+  <link  rel="stylesheet" type="text/css" href="$ROOT/static_files/css/menu.css" />
+  <link  rel="stylesheet" href="$ROOT/static_files/css/amcharts.css" type="text/css" />
+  <link  rel="stylesheet" type="text/css" href="$ROOT/static_files/jqGrid/css/ui.jqgrid.css">
+  <link  rel="stylesheet" type="text/css" href="$ROOT/static_files/css/dashboard.css" />
 </head>
 EOF;
+  //<link  rel="stylesheet" type="text/css" media="screen and (max-device-width: 1920px)" href="$ROOT/static_files/css/dashboard.css" />
+  //<link  rel="stylesheet" type="text/css" media="screen and (min-device-width: 2000px)" href="$ROOT/static_files/css/dashboard.css" />
   return;
 }
 /***********************************************************************************************/
@@ -491,11 +493,11 @@ echo <<<EOF
             </li>
             </ul>
 		<span id=n1 class="ui-widget-header fa fa-tachometer fa-5x fa_custom fa-pull-left"></span>
-        <h4 id=date class="ui-widget-header ui-corner-all" style="text-align:right;float:right;margin:20px"></h4>
+        <h4 id=date class="save-session ui-widget-header ui-corner-all" style="text-align:right;float:right;margin:20px"></h4>
 		<h2 class="ui-widget-content ui-corner-all fa fa-3x fa_custom fa-pull-left">Open-Dashboard</h2>
 		<h2 id='heading' class="ui-widget-header ui-corner-all fa-2x fa_custom fa-pull-left">$view</h2>
 		<h2 id="save-session" class="save-session ui-widget-header fa fa_custom fa-pull-right"><a href=#>save-session</a></h2>
-		<div id="hoverThemes" class="theme ui-widget-content fa fa_custom fa-pull-right">Themes
+		<div id="hoverThemes" class="save-session theme ui-widget-content fa fa_custom fa-pull-right">Themes
             <span id=selectThemes class="fa fa_custom fa-pull-right"></span>
         </div>
     </span>
