@@ -493,10 +493,10 @@ echo <<<EOF
             </li>
             </ul>
 		<span id=n1 class="ui-widget-header fa fa-tachometer fa-5x fa_custom fa-pull-left"></span>
-        <h4 id=date class="save-session ui-widget-header ui-corner-all" style="text-align:right;float:right;margin:20px"></h4>
-		<h2 class="ui-widget-content ui-corner-all fa fa-3x fa_custom fa-pull-left">Open-Dashboard</h2>
+        <h4 id=date class="save-session ui-widget-content ui-corner-all" style="text-align:right;float:right;margin:20px"></h4>
+		<h2 class="ui-widget-header ui-corner-all fa fa-3x fa_custom fa-pull-left">Open-Dashboard</h2>
 		<h2 id='heading' class="ui-widget-header ui-corner-all fa-2x fa_custom fa-pull-left">$view</h2>
-		<h2 id="save-session" class="save-session ui-widget-header fa fa_custom fa-pull-right"><a href=#>save-session</a></h2>
+		<h2 id="save-session" class="save-session ui-widget-content fa fa_custom fa-pull-right"><a href=#>save-session</a></h2>
 		<div id="hoverThemes" class="save-session theme ui-widget-content fa fa_custom fa-pull-right">Themes
             <span id=selectThemes class="fa fa_custom fa-pull-right"></span>
         </div>
@@ -570,6 +570,7 @@ EOF;
             print "
                 <!-- Widget outer --> 
                 <div id=" . $div . "_outer class=" . $widget_defs['grid'][$widget['SIZE']] . ">
+                    <h3 style='text-align:left;text-valign:top;display:inline-block'>" . $widget['HEADING'] . "</h3>
 					<i id=" . $div . "_head  class='expand fa fa-expand fa-pull-right'></i>
                     <table style='float: left;height:auto;' id='" . $div . "'></table>
                 ";

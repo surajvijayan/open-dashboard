@@ -16,7 +16,7 @@ if ($argc == 2)
 					create_php($pane["name"]);
 					break;
 				case "widgets":
-					create_widgets($pane["name"]);
+					create_widgets($ROOT,$pane["name"]);
 					break;
 				default:
 					print "Usage: $argv[0] [js|php|widgets]" . "\n";
@@ -133,9 +133,9 @@ var no_widgets = $count;
 create_js_config($fd,$widgets_array);
 fputs($fd,"
 var fscreen_flag = false;
-$.themes.setDefaults({themeBase: '../static_files/jquery-ui-themes-1.12.1/themes/',
-                      previews: '../static_files/js/themes-preview.gif',
-                      icons: '../static_files/js/themes.gif',
+$.themes.setDefaults({themeBase: ROOT + '/static_files/jquery-ui-themes-1.12.1/themes/',
+                      previews: ROOT + '/static_files/js/themes-preview.gif',
+                      icons: ROOT + '/static_files/js/themes.gif',
                       cookieExpiry: 7,
                       themeFile: 'jquery-ui.min.css',
                       showPreview: false,
@@ -404,7 +404,7 @@ dashboard_footer(\$ROOT,'$pane_name');
 }
 /*****************************************************************************************/
 
-function create_widgets($pane_name)
+function create_widgets($ROOT,$pane_name)
 {
     $inc_file = "";
     global $panes;
@@ -442,7 +442,7 @@ function create_widgets($pane_name)
         exit(0);
     }
     include_once($inc_file);
-    $widgets_file = '../static_files/dashboard/' . $pane_name . "_widgets.js";
+    $widgets_file = "../static_files/dashboard/" . $pane_name . "_widgets.js";
     $fd = fopen($widgets_file,"w");
     fputs($fd,"
 /* Suraj Vijayan
@@ -468,9 +468,9 @@ function include(file)
 		foreach ($row as $widget)
 		{
 			if($widget['TYPE'] == 'chart')
-				$dir = '../static_files/dashboard/charts';
+				$dir = "$ROOT/static_files/dashboard/charts";
 			else
-				$dir = '../static_files/dashboard/grids';
+				$dir = "$ROOT/static_files/dashboard/grids";
 			fputs($fd,"include('" . "$dir" . "/" . $widget["NAME"] . ".js" ."');\n");
 		}
 	}

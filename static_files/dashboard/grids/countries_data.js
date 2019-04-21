@@ -25,14 +25,14 @@ function countries_data_process(ROOT,service,flag,table_id)
 				//'borders'
 			],
     colModel:[
-        {name:'name',width:200},
-        {name:'region',width:200},
-        {name:'subregion',width:200},
-        {name:'capital',width:200},
-		{name:'population',width:130,template: "integer"},
-		{name:'area',width:130,template: "integer",formatoptions: { suffix: " sq.km."}},
-		{name:'gini',width:80,template: "number",formatoptions:{decimalPlaces: 1}},
-		{name:'flag',width:230,formatter:'link'}
+        {name:'name'},
+        {name:'region'},
+        {name:'subregion'},
+        {name:'capital'},
+		{name:'population',template: "integer"},
+		{name:'area',template: "integer",formatoptions: { suffix: " sq.km."}},
+		{name:'gini',template: "number",formatoptions:{decimalPlaces: 1}},
+		{name:'flag',formatter:'link'}
     ],
 	iconSet: "fontAwesome",
     rowNum:20,
@@ -42,7 +42,8 @@ function countries_data_process(ROOT,service,flag,table_id)
     sortorder: "desc",
     caption: title,
     hiddengrid: flag,
-    shrinkToFit: false,
+    width: null,
+    autowidth:true,
 	subGrid: false
 	}).jqGrid("navGrid", {refresh:false,edit: false,add: false,del: false,search: false,view: false});
 }
